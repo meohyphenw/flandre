@@ -197,18 +197,28 @@ function pool.unload_font(n)
     pool.font[n] = nil
 end
 
+---加载音效
+---@param p string 音效位置
+---@param n string 音效名
 function pool.load_sound(p, n)
     pool.sound[n] = love.audio.newSource(p, 'static')
 end
 
+---卸载音效
+---@param n string 音效名
 function pool.unload_sound(n)
     pool.sound[n] = nil
 end
 
+---加载音乐
+---@param p string 音乐位置
+---@param n string 音乐名
 function pool.load_music(p, n)
     pool.music[n] = love.audio.newSource(p, 'stream')
 end
 
+---卸载音乐
+---@param n string 音乐名
 function pool.unload_music(n)
     pool.music[n] = nil
 end
