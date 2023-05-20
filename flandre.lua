@@ -37,7 +37,7 @@ _p = flandre.pool
 _objp = flandre.pool.object
 _pn = flandre.pool.objlen
 _new = flandre.pool.new
-_newgt = flandre.pool.newgt
+_newex = flandre.pool.newex
 _rmv = flandre.pool.rmv
 
 flandre.object = require('object')

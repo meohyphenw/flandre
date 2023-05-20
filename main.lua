@@ -1,9 +1,11 @@
 flandre = require 'flandre'
 
 function love.load()
-    obj = _newgt(_class_sprite)
-    obj.x = 10
-    obj.y = 10
+    obj = _newex(flandre.object)
+    obj.draw = function (self)
+---@diagnostic disable-next-line: need-check-nil
+        love.graphics.print(tostring(self.index), 10,10)
+    end
 end
 
 function love.update(dt)

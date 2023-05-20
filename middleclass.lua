@@ -1,3 +1,12 @@
+---@class class
+local origin = {
+  --将参数传给类的 initialize 函数，返回实例化的对象
+	---@param ... unknown
+	---@return any
+	new = function(...)
+	end
+}
+
 local middleclass = {
     _VERSION     = 'middleclass v4.1.1',
     _DESCRIPTION = 'Object Orientation for Lua',
