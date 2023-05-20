@@ -30,7 +30,12 @@ local flandre = {
     ]]
 }
 
-flandre._flanstart = function() print(flandre._LOGO) print(flandre._VERSION) end
+flandre.flanstart = function() print(flandre._LOGO) print(flandre._VERSION) end
+
+--全局变量均为 “下划线+原变量名（可能简写）” 形式，如果当作库来使用可以删去
+
+flandre.task = require("task")
+_task = flandre.task
 
 flandre.pool = require('pool')
 _p = flandre.pool
@@ -39,6 +44,14 @@ _pn = flandre.pool.objlen
 _new = flandre.pool.new
 _newex = flandre.pool.newex
 _rmv = flandre.pool.rmv
+_load_image = flandre.pool.load_image
+_unload_image = flandre.pool.unload_image
+_load_quad = flandre.pool.load_quad
+_unload_quad = flandre.pool.unload_quad
+_load_quad_group_x = flandre.pool.load_quad_group_x
+_load_quad_group_y = flandre.pool.load_quad_group_y
+_load_quad_group_batch = flandre.pool.load_quad_group_batch
+
 
 flandre.object = require('object')
 _class_object = flandre.object
@@ -46,5 +59,5 @@ _class_object = flandre.object
 flandre.sprite = require('sprite')
 _class_sprite = flandre.sprite
 
-flandre._flanstart()
+flandre.flanstart()
 return flandre

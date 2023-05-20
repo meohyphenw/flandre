@@ -1,11 +1,15 @@
 flandre = require 'flandre'
 
 function love.load()
-    obj = _newex(flandre.object)
-    obj.draw = function (self)
----@diagnostic disable-next-line: need-check-nil
-        love.graphics.print(tostring(self.index), 10,10)
-    end
+    _load_image('www.png', 'www')
+    _new(flandre.sprite)
+    _last.image = _p.image.www
+    _task.new(_last, function ()
+        for i = 1, 100 do
+            _last.x = _last.x + 1
+            coroutine.yield()
+        end
+    end)
 end
 
 function love.update(dt)
