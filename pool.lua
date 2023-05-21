@@ -145,11 +145,11 @@ end
 ---@param n string 切片组名
 function pool.load_quad_group_x(i, x, n)
     local sw = i:getWidth()
-	local sh = i:getHeight()
+    local sh = i:getHeight()
     pool.quad_group[n] = {}
-    for j = 0, n do
-		table.insert(pool.quad_group[n], love.graphics.newQuad(j*sw/x, 0, sw/x, sh, sw, sh))
-	end
+    for j = 0, x do
+        table.insert(pool.quad_group[n], love.graphics.newQuad(j*sw/x, 0, sw/x, sh, sw, sh))
+    end
 end
 
 ---加载切片组，以 `x` 为分割次数纵向切片
@@ -158,11 +158,11 @@ end
 ---@param n string 切片组名
 function pool.load_quad_group_y(i, x, n)
     local sw = i:getWidth()
-	local sh = i:getHeight()
+    local sh = i:getHeight()
     pool.quad_group[n] = {}
-    for j = 0, n do
-		table.insert(pool.quad_group[n], love.graphics.newQuad(0, j*sh/x, sw, sh/x, sw, sh))
-	end
+    for j = 0, x do
+        table.insert(pool.quad_group[n], love.graphics.newQuad(0, j*sh/x, sw, sh/x, sw, sh))
+    end
 end
 
 ---加载切片组，使用指定表中的数据切片
@@ -171,11 +171,11 @@ end
 ---@param n string 切片组名
 function pool.load_quad_group_batch(i, t, n)
     local sw = i:getWidth()
-	local sh = i:getHeight()
+    local sh = i:getHeight()
     pool.quad_group[n] = {}
     for _,v in pairs(t) do
-		pool.quad_group[n][v[5]] = love.graphics.newQuad(v[1], v[2], v[3], v[4], sw, sh)
-	end
+        pool.quad_group[n][v[5]] = love.graphics.newQuad(v[1], v[2], v[3], v[4], sw, sh)
+    end
 end
 
 ---卸载切片组
