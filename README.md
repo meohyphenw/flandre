@@ -11,7 +11,7 @@
 <br>
 欸？还有在看吗？不知道怎么用？<br>
 在`main.lua`中这么做
-```
+```lua
 flandre = require 'flandre'
 ```
 就可以啦
