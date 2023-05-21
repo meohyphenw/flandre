@@ -54,7 +54,13 @@ _unload_quad = flandre.pool.unload_quad
 _load_quad_group_x = flandre.pool.load_quad_group_x
 _load_quad_group_y = flandre.pool.load_quad_group_y
 _load_quad_group_batch = flandre.pool.load_quad_group_batch
-
+_unload_quad_group = flandre.pool.unload_quad_group
+_load_font = flandre.pool.load_font
+_unload_font = flandre.pool.unload_font
+_load_sound = flandre.pool.load_sound
+_unload_sound = flandre.pool.unload_sound
+_load_music = flandre.pool.load_music
+_unload_music = flandre.pool.unload_music
 
 flandre.object = require('object')
 _class_object = flandre.object
