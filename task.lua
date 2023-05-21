@@ -11,9 +11,11 @@ end
 
 function task:continue()
     if self.task then
-        for _, t in pairs(self.task) do
-            if coroutine.status(t) ~= "dead" then
-                coroutine.resume(t)
+        if next(self.task) then --?
+            for _, t in pairs(self.task) do
+                if coroutine.status(t) ~= "dead" then
+                    coroutine.resume(t)
+                end
             end
         end
     end

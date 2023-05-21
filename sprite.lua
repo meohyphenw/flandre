@@ -24,12 +24,14 @@ function sprite:update()
 end
 
 function sprite:draw()
-    if type(self.quad) == 'nil' then
-        love.graphics.draw(self.image, self.x, self.y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
-    elseif type(self.quad) == 'table' then
-        love.graphics.draw(self.image, self.quad[self.frame], self.x, self.y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
-    else
-        love.graphics.draw(self.image, self.quad, self.x, self.y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+    if self.image then
+        if type(self.quad) == 'nil' then
+            love.graphics.draw(self.image, self.x, self.y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+        elseif type(self.quad) == 'table' then
+            love.graphics.draw(self.image, self.quad[self.frame], self.x, self.y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+        else
+            love.graphics.draw(self.image, self.quad, self.x, self.y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+        end
     end
 end
 
