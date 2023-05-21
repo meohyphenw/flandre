@@ -35,14 +35,18 @@ local flandre = {
 
 flandre.flanstart = function() print(flandre._LOGO) print(flandre._VERSION) end
 
---全局变量均为 “下划线+原变量名（可能简写）” 形式，如果当作库来使用可以删去
-
 flandre.task = require("task")
 _task = flandre.task
 
 flandre.pool = require('pool')
 _p = flandre.pool
 _objp = flandre.pool.object
+_image = flandre.pool.image
+_quad = flandre.pool.quad
+_quad_group = flandre.pool.quad_group
+_font = flandre.pool.font
+_sound = flandre.pool.sound
+_music = flandre.pool.music
 _pn = flandre.pool.objlen
 _new = flandre.pool.new
 _newex = flandre.pool.newex

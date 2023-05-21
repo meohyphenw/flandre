@@ -25,10 +25,10 @@ function pool.objlen()
     return len;
 end
 
----在对象池中实例指定类，如果 `c` 不是一个类，则返回nil
+---在对象池中实例指定类，返回对象池中该实例对象的键，如果 `c` 不是一个类，则返回0
 ---@param c flandre.class 类
 ---@param ... unknown 参数
----@return integer 实例对象在对象池中的索引
+---@return integer index
 function pool.new(c, ...)
     if c.new then
         if next(pool.nilindex) then

@@ -1,18 +1,22 @@
+---精灵类
 ---@class flandre.sprite : flandre.object
-local sprite = _class('sprite', flandre.object)
+local sprite = _class('sprite', _class_object)
 
-function sprite:initialize()
-    _class_object:initialize()
-    self.image = nil
-    self.x = 0
-    self.y = 0
-    self.r = 0
-    self.sx = 1
-    self.sy = 1
-    self.ox = 0
-    self.oy = 0
-    self.kx = 0
-    self.ky = 0
+---@param i love.Image
+function sprite:initialize(i)
+    _class_object.initialize(self)
+    self.image = i ---@type love.Image
+    self.quad = nil ---@type love.Quad | table
+    self.frame = 1 ---@type integer | string
+    self.x = 0 ---@type number
+    self.y = 0 ---@type number
+    self.r = 0 ---@type number
+    self.sx = 1 ---@type number
+    self.sy = 1 ---@type number
+    self.ox = 0 ---@type number
+    self.oy = 0 ---@type number
+    self.kx = 0 ---@type number
+    self.ky = 0 ---@type number
 end
 
 function sprite:update()
@@ -20,7 +24,13 @@ function sprite:update()
 end
 
 function sprite:draw()
-    love.graphics.draw(self.image, self.x, self.y)
+    if type(self.quad) == 'Quad' then
+        love.graphics.draw(self.image, self.quad, self.x, self.y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+    elseif type(self.quad) == 'table' then
+        love.graphics.draw(self.image, self.quad[self.frame], self.x, self.y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+    else
+        love.graphics.draw(self.image, self.x, self.y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+    end
 end
 
 return sprite
