@@ -1,5 +1,5 @@
 ---@class flandre.sprite : flandre.object
-local sprite = _class('sprite', _class_object)
+local sprite = _class('sprite', flandre.object)
 
 function sprite:initialize()
     _class_object:initialize()
