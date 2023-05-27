@@ -66,11 +66,16 @@ _unload_sound = flandre.core.unload_sound
 _load_music = flandre.core.load_music
 _unload_music = flandre.core.unload_music
 
+flandre.screen = require('screen')
+
 flandre.object = require('object')
 _class_object = flandre.object
 
 flandre.sprite = require('sprite')
 _class_sprite = flandre.sprite
+
+flandre.interface = require('interface')
+_class_interface = flandre.interface
 
 flandre.flanstart()
 return flandre
