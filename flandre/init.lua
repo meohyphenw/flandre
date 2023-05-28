@@ -1,4 +1,4 @@
-_class = require 'middleclass'
+_class = require 'flandre.middleclass'
 local flandre = {
     _VERSION = 'Flandre v1.0.0',
     _LOGO = [[
@@ -35,10 +35,10 @@ local flandre = {
 
 flandre.flanstart = function() print(flandre._LOGO) print(flandre._VERSION) end
 
-flandre.task = require("task")
+flandre.task = require("flandre.task")
 _task = flandre.task
 
-flandre.core = require('core')
+flandre.core = require('flandre.core')
 _core = flandre.core
 _objp = flandre.core.object
 _image = flandre.core.image
@@ -66,21 +66,21 @@ _unload_sound = flandre.core.unload_sound
 _load_music = flandre.core.load_music
 _unload_music = flandre.core.unload_music
 
-flandre.screen = require('screen')
+flandre.screen = require('flandre.screen')
 _scn = flandre.screen
 _scn_rw = flandre.screen.ratio_width
 _scn_rh = flandre.screen.ratio_height
 
-flandre.object = require('object')
+flandre.object = require('flandre.object')
 _class_object = flandre.object
 
-flandre.sprite = require('sprite')
+flandre.sprite = require('flandre.sprite')
 _class_sprite = flandre.sprite
 
-flandre.interface = require('interface')
+flandre.interface = require('flandre.interface')
 _class_interface = flandre.interface
 
-flandre.text = require('text')
+flandre.text = require('flandre.text')
 _class_text = flandre.text
 
 flandre.flanstart()

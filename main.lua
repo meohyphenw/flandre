@@ -19,7 +19,7 @@ local function bullet(x, y, r, num)
 end
 
 function love.load()
-    require 'bullet'
+    require 'flandre.bullet'
     _new(_class_object)
     _task.new(_last, function ()
         for i = 1, 100 do
