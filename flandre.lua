@@ -68,8 +68,8 @@ _unload_music = flandre.core.unload_music
 
 flandre.screen = require('screen')
 _scn = flandre.screen
-_scn_rt_w = flandre.screen.ratio_width
-_scn_rt_h = flandre.screen.ratio_height
+_scn_rw = flandre.screen.ratio_width
+_scn_rh = flandre.screen.ratio_height
 
 flandre.object = require('object')
 _class_object = flandre.object
@@ -79,6 +79,9 @@ _class_sprite = flandre.sprite
 
 flandre.interface = require('interface')
 _class_interface = flandre.interface
+
+flandre.text = require('text')
+_class_text = flandre.text
 
 flandre.flanstart()
 return flandre

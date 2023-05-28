@@ -26,7 +26,7 @@ function core.objlen()
 end
 
 ---在对象池中实例指定类，返回对象池中该实例对象的键，如果 `c` 不是一个类，则返回0
----@param c flandre.class 类
+---@param c flandre.new 类
 ---@param ... unknown 参数
 ---@return integer index
 function core.new(c, ...)
@@ -58,7 +58,7 @@ function core.new(c, ...)
 end
 
 ---在对象池中实例指定类，返回对象池中该实例对象的引用，如果 `c` 不是一个类，则返回nil
----@param c flandre.class 类
+---@param c flandre.new 类
 ---@return table 在对象池中的对象引用
 function core.newex(c)
     return core.object[core.new(c)]
@@ -167,9 +167,9 @@ end
 
 ---加载切片组，使用指定表中的数据切片
 ---@param i love.Image 基准图像
----@param t table 包含切片数据的表，表中以 `{x: x坐标, y: y坐标, w: 宽, h: 高, n:名（或序号）}` 顺序排列。例如 `{{0,0,5,5,1}, {5,5,5,5,2}}`
 ---@param n string 切片组名
-function core.load_quad_group_batch(i, t, n)
+---@param t table 包含切片数据的表，表中以 `{x: x坐标, y: y坐标, w: 宽, h: 高, n:名（或序号）}` 顺序排列。例如 `{{0,0,5,5,1}, {5,5,5,5,2}}`
+function core.load_quad_group_batch(i, n, t)
     local sw = i:getWidth()
     local sh = i:getHeight()
     core.quad_group[n] = {}
@@ -187,8 +187,10 @@ end
 ---加载字体
 ---@param p string 字体位置
 ---@param n string 字体名
-function core.load_font(p, n)
-    core.font[n] = love.graphics.newFont(p)
+---@param s number 大小
+---@param h? "light"|"mono"|"none"|"normal"
+function core.load_font(p, n, s, h)
+    core.font[n] = love.graphics.newFont(p, s, h)
 end
 
 ---卸载字体

@@ -2,7 +2,8 @@
 ---@class flandre.interface : flandre.object
 local interface = _class('interface', _class_object)
 
--- 对齐方式对照
+---@alias align 'c' | 'l' | 'r' | 't' | 'b' | 'lt'  | 'lb' | 'rt' | 'rb'
+-- 对齐方式
 -- 'c': 中
 -- 'l': 左
 -- 'r': 右
@@ -15,8 +16,15 @@ local interface = _class('interface', _class_object)
 
 function interface:initialize()
     _class_object.initialize(self)
-    self.agn = 'c' ---@type string
-    self.ofst = 0 ---@type number
+    self.agn = 'lt' ---@type align
+    self.ofx = 0 ---@type number
+    self.ofy = 0 ---@type number
+    self._x = 0 ---@type number 用于渲染的x坐标，不可更改
+    self._y = 0 ---@type number 用于渲染的y坐标，不可更改
+    self.cr = 1 ---@type number
+    self.cg = 1 ---@type number
+    self.cb = 1 ---@type number
+    self.ca = 1 ---@type number
     self.r = 0 ---@type number
     self.sx = 1 ---@type number
     self.sy = 1 ---@type number
@@ -28,10 +36,34 @@ end
 
 function interface:update()
     _task.continue(self)
-end
-
-function interface:draw()
-    
+    if self.agn == 'c' then
+        self._x = _scn.origin_width()/2 + self.ofx
+        self._y = _scn.origin_height()/2 + self.ofy
+    elseif self.agn == 'l' then
+        self._x = self.ofx
+        self._y = _scn.origin_height()/2 + self.ofy
+    elseif self.agn == 'r' then
+        self._x = _scn.origin_width() + self.ofx
+        self._y = _scn.origin_height()/2 + self.ofy
+    elseif self.agn == 't' then
+        self._x = _scn.origin_width()/2 + self.ofx
+        self._y = self.ofy
+    elseif self.agn == 'b' then
+        self._x = _scn.origin_width()/2 + self.ofx
+        self._y = _scn.origin_height() + self.ofy
+    elseif self.agn == 'lt' then
+        self._x = self.ofx
+        self._y = self.ofy
+    elseif self.agn == 'lb' then
+        self._x = self.ofx
+        self._y = _scn.origin_height() + self.ofy
+    elseif self.agn == 'rt' then
+        self._x = _scn.origin_width() + self.ofx
+        self._y = self.ofy
+    elseif self.agn == 'rb' then
+        self._x = _scn.origin_width() + self.ofx
+        self._y = _scn.origin_height() + self.ofy
+    end
 end
 
 return interface

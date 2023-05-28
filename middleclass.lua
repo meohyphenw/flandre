@@ -1,5 +1,5 @@
----@class flandre.class
-local origin = {
+---@class flandre.new
+local new = {
   --将参数传给类的 initialize 函数，返回实例化的对象
 	---@param ... unknown
 	---@return any

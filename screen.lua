@@ -33,14 +33,38 @@ local ratio = {
 	_2560x1440_HEIGHT = 1440/ORIGIN_HEIGHT,
 	AUTO_WIDTH = get_window_size(true)/ORIGIN_WIDTH,
 	AUTO_HEIGHT = get_window_size(false)/ORIGIN_HEIGHT
-	--自适应
 }
 
 local ratio_width = ratio.AUTO_WIDTH
 local ratio_height = ratio.AUTO_HEIGHT
 
+---@return number
+function screen.origin_width()
+	return ORIGIN_WIDTH
+end
+
+---@return number
+function screen.origin_height()
+	return ORIGIN_HEIGHT
+end
+
+function screen.ratio_width()
+	return ratio_width
+end
+
+function screen.ratio_height()
+	return ratio_height
+end
+
+---更改缩放
 function screen.change()
     love.graphics.scale(ratio_width, ratio_height)
+end
+
+---更新自动比例
+function screen.update()
+	ratio.AUTO_WIDTH = get_window_size(true)/ORIGIN_WIDTH
+	ratio.AUTO_HEIGHT = get_window_size(false)/ORIGIN_HEIGHT
 end
 
 return screen
