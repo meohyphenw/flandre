@@ -39,7 +39,7 @@ flandre.task = require("task")
 _task = flandre.task
 
 flandre.core = require('core')
-_c = flandre.core
+_core = flandre.core
 _objp = flandre.core.object
 _image = flandre.core.image
 _quad = flandre.core.quad

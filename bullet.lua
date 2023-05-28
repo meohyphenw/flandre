@@ -1,5 +1,5 @@
-_load_image('assets/bullet/bullet1.png', 'bullet_map1')
-_load_image('assets/bullet/etbreak.png', 'etbreak')
+_load_image('bullet1.png', 'bullet_map1')
+--_load_image('etbreak.png', 'etbreak')
 _load_quad_group_batch(_image.bullet_map1, 'bullet_map1', {
     {224,0,16,16,'scale_black'}, {224,16,16,16,'scale_deepRed'}, {224,32,16,16,'scale_red'},
     {224,48,16,16,'scale_purple'}, {224,64,16,16,'scale_pink'}, {224,80,16,16,'scale_deepBlue'},
@@ -90,7 +90,8 @@ _load_quad_group_batch(_image.bullet_map1, 'bulletfog', {
     {0,64,64,64,5}, {64,64,64,64,6}, {128,64,64,64,7}, {192,64,64,64,8}
 })
 
-_load_quad_group_batch(_image.etbreak, 'etbreak', {
+--[[ _load_quad_group_batch(_image.etbreak, 'etbreak', {
     {0,0,64,64,1}, {64,0,64,64,2}, {128,0,64,64,3}, {192,0,64,64,4},
     {0,64,64,64,5}, {64,64,64,64,6}, {128,64,64,64,7}, {192,64,64,64,8}
 })
+ ]]

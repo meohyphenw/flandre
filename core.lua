@@ -84,12 +84,11 @@ function core.rmv(o)
     end
 end
 
----更新
----@param dt number
-function core.update(dt)
+---更新（由于task不受deltatime的影响，所以舍去dt）
+function core.update()
     for _,v in pairs(core.object) do
         if v.update and v.is_using and v.is_active then
-            v:update(dt)
+            v:update()
         end
     end
 end
