@@ -2,6 +2,8 @@
 ---@class flandre.sprite : flandre.object
 local sprite = _class('sprite', _class_object)
 
+---@alias flandre.sprite.shape 'c' | 's'
+
 ---@param i love.Image
 function sprite:initialize(i)
     _class_object.initialize(self)

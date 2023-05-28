@@ -1,4 +1,3 @@
----池，包括对象，资源等在内
 local core = {}
 
 core.object = {}
@@ -84,7 +83,7 @@ function core.rmv(o)
     end
 end
 
----更新（由于task不受deltatime的影响，所以舍去dt）
+---更新（由于flandre.task.wait不受deltatime的影响，所以舍去dt）
 function core.update()
     for _,v in pairs(core.object) do
         if v.update and v.is_using and v.is_active then
