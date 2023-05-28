@@ -67,6 +67,9 @@ _load_music = flandre.core.load_music
 _unload_music = flandre.core.unload_music
 
 flandre.screen = require('screen')
+_scn = flandre.screen
+_scn_rt_w = flandre.screen.ratio_width
+_scn_rt_h = flandre.screen.ratio_height
 
 flandre.object = require('object')
 _class_object = flandre.object
