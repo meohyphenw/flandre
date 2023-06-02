@@ -19,6 +19,7 @@ local function bullet(x, y, r, num)
 end
 
 function love.load()
+    _load_font('unifont.TTF', 'unifont', 20)
     require 'flandre.bullet'
     _new(_class_object)
     _task.new(_last, function ()
@@ -27,6 +28,9 @@ function love.load()
             _task.wait(15)
         end
     end)
+    _new(_class_text, '你好')
+    _last:set_align('l')
+    _last.font = _font.unifont
 end
 
 function love.update()
