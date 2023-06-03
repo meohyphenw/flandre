@@ -1,4 +1,6 @@
 flandre = require 'flandre'
+debug_graph = require 'flandre.debugGraph'
+fps_graph = debug_graph:new('fps', 0, 0, 200, 70)
 
 local function bullet(x, y, r, num)
     for i = 1, num do
@@ -53,11 +55,13 @@ function love.load()
     _last.txtagn = 'center'
 end
 
-function love.update()
+function love.update(dt)
     flandre.core.update()
+    fps_graph:update(dt)
 end
 
 function love.draw()
     flandre.screen.change()
     flandre.core.draw()
+    fps_graph:draw()
 end
