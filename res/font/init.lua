@@ -1,1 +1,1 @@
-_load_font('res/font/unifont.TTF', 'unifont', 20)
+_load_font('res/font/GOTHICI.TTF', 'gothici', 27)

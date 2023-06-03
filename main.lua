@@ -17,11 +17,12 @@ local function bullet(x, y, r, num)
         end
     end
 end
-
+-- Memory Lost in the Galaxy
 function love.load()
     require 'res.font'
     require 'res.bullet'
     require 'res.player'
+    require 'res.background'
     --[[ _new(_class_object)
     _task.new(_last, function ()
         for i = 1, 17 do
@@ -29,8 +30,27 @@ function love.load()
             _task.wait(15)
         end
     end) ]]
-    _new(_class_player, _quad_group.pl00_normal, _quad_group.pl00_left, _quad_group.pl00_right, _quad_group.pl00_leftex, _quad_group.pl00_rightex)
-    _last.image = _image.pl00
+    --_new(_class_player, _quad_group.pl00_normal, _quad_group.pl00_left, _quad_group.pl00_right, _quad_group.pl00_leftex, _quad_group.pl00_rightex)
+    --_last.image = _image.pl00
+    _new(_class_sprite, _image.titlebg)
+    _new(_class_text, 'Start')
+    _last:set_align('lb')
+    _last.ofy = -105 - 40
+    _last.font = _font.gothici
+    _last.is_fmt = true
+    _last.txtagn = 'center'
+    _new(_class_text, 'Extra')
+    _last:set_align('lb')
+    _last.ofy = -70 - 40
+    _last.font = _font.gothici
+    _last.is_fmt = true
+    _last.txtagn = 'center'
+    _new(_class_text, 'Config')
+    _last:set_align('lb')
+    _last.ofy = -35 - 40
+    _last.font = _font.gothici
+    _last.is_fmt = true
+    _last.txtagn = 'center'
 end
 
 function love.update()

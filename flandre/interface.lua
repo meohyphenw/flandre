@@ -16,6 +16,7 @@ local interface = _class('interface', _class_object)
 
 function interface:initialize()
     _class_object.initialize(self)
+    self.layer = LAYER_UI
     self.agn = 'lt' ---@type align align
     self.ofx = 0 ---@type number offest x
     self.ofy = 0 ---@type number offest y

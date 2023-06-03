@@ -1,0 +1,1 @@
+_load_image('res/background/title.png', 'titlebg')
