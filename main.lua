@@ -19,17 +19,15 @@ local function bullet(x, y, r, num)
 end
 
 function love.load()
-    require 'flandre.bullet'
-    _load_image('flanlogo.png', 'flanlogo')
-    --[[ _load_font('unifont.TTF', 'unifont', 20)
-    require 'flandre.bullet'
+    _load_font('unifont.TTF', 'unifont', 20)
+    require 'res.bullet'
     _new(_class_object)
     _task.new(_last, function ()
         for i = 1, 17 do
             bullet(_scn.origin_width()/2,_scn.origin_height()/2,20*i,30)
             _task.wait(15)
         end
-    end) ]]
+    end)
 end
 
 function love.update()
