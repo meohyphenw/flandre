@@ -68,9 +68,10 @@ end
 
 ---在对象池中实例指定类，返回对象池中该实例对象的引用，如果 `c` 不是一个类，则返回nil
 ---@param c flandre.new 类
+---@param ...unknown
 ---@return table 在对象池中的对象引用
-function core.newex(c)
-    return core.object[core.new(c)]
+function core.newex(c, ...)
+    return core.object[core.new(c, ...)]
 end
 
 ---在对象池中删除给定对象引用或者索引的对象
@@ -94,10 +95,10 @@ function core.rmv(o)
 end
 
 ---更新
-function core.update()
+function core.update(dt)
     for _,v in pairs(core.object) do
         if v.update and v.is_using and v.is_active then
-            v:update()
+            v:update(dt)
         end
     end
 end

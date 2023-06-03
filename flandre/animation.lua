@@ -15,8 +15,8 @@ function animation:initialize()
     self.anim_playing = nil ---@type flandre.animation.animmode
 end
 
-function animation:update()
-    _task.continue(self)
+function animation:update(dt)
+    _task.continue(self, dt)
 end
 
 function animation:update_anim()

@@ -2,6 +2,8 @@ flandre = require 'flandre'
 debug_graph = require 'flandre.debugGraph'
 fps_graph = debug_graph:new('fps', 0, 0, 200, 70)
 
+flux = require 'flandre.flux'
+
 local function bullet(x, y, r, num)
     for i = 1, num do
         _new(_class_sprite, _image.bullet_map1)
@@ -53,10 +55,15 @@ function love.load()
     _last.font = _font.gothici
     _last.is_fmt = true
     _last.txtagn = 'center'
+
+    test = _newex(_class_sprite, _image.sleff)
+    test.quad = _quad_group.sleff
+    flux.to(test, 1, {x = 300, y = 300}):ease('quadout')
 end
 
 function love.update(dt)
-    flandre.core.update()
+    flandre.core.update(dt)
+    flux.update(0.006)
     fps_graph:update(dt)
 end
 

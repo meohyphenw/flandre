@@ -37,8 +37,8 @@ function interface:initialize()
     self.ky = 0 ---@type number
 end
 
-function interface:update()
-    _task.continue(self)
+function interface:update(dt)
+    _task.continue(self, dt)
     self._x = self._rstx + self.ofx
     self._y = self._rsty + self.ofy
 end
