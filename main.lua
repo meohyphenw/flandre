@@ -19,15 +19,18 @@ local function bullet(x, y, r, num)
 end
 
 function love.load()
-    _load_font('unifont.TTF', 'unifont', 20)
+    require 'res.font'
     require 'res.bullet'
-    _new(_class_object)
+    require 'res.player'
+    --[[ _new(_class_object)
     _task.new(_last, function ()
         for i = 1, 17 do
             bullet(_scn.origin_width()/2,_scn.origin_height()/2,20*i,30)
             _task.wait(15)
         end
-    end)
+    end) ]]
+    _new(_class_player, _quad_group.pl00_normal, _quad_group.pl00_left, _quad_group.pl00_right, _quad_group.pl00_leftex, _quad_group.pl00_rightex)
+    _last.image = _image.pl00
 end
 
 function love.update()

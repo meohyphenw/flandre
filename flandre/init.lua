@@ -83,5 +83,11 @@ _class_interface = flandre.interface
 flandre.text = require('flandre.text')
 _class_text = flandre.text
 
+flandre.animation = require('flandre.animation')
+_class_animation = flandre.animation
+
+flandre.player = require('flandre.player')
+_class_player = flandre.player
+
 flandre.flanstart()
 return flandre
