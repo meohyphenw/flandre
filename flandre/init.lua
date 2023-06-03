@@ -35,6 +35,9 @@ local flandre = {
 
 flandre.flanstart = function() print(flandre._LOGO) print(flandre._VERSION) end
 
+flandre.flux = require('flandre.flux')
+_tween = flandre.flux -- flux的补间库
+
 flandre.task = require("flandre.task")
 _task = flandre.task
 
@@ -79,6 +82,9 @@ _class_sprite = flandre.sprite
 
 flandre.interface = require('flandre.interface')
 _class_interface = flandre.interface
+
+flandre.unit = require('flandre.unit')
+_class_unit = flandre.unit
 
 flandre.text = require('flandre.text')
 _class_text = flandre.text

@@ -11,6 +11,7 @@ function text:initialize(c)
 end
 
 function text:draw()
+    love.graphics.setColor(self.cr, self.cg, self.cb, self.ca)
     if self.font then
         love.graphics.setFont(self.font)
     end

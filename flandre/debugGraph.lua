@@ -94,6 +94,7 @@ function debugGraph:new(type, x, y, width, height, delay, label, font)
   end
 
   function instance:draw()
+    love.graphics.setColor(1,1,1,1) -- meohyphenw添加
     -- Store the currently set font and change the font to our own
     local fontCache = love.graphics.getFont()
     love.graphics.setFont(self.font)
