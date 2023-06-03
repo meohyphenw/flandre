@@ -38,7 +38,7 @@ function animation:update_anim()
             self.quad = self.anim_rightex
         end
     end
-    if self.frame == #self.quad then
+    if self.frame >= #self.quad then
         self.frame = 1
     else
         self.frame = self.frame + 1
