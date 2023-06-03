@@ -39,6 +39,11 @@ function animation:update_anim()
         end
     end
     if self.frame >= #self.quad then
+        if self.anim_playing == 'lex' then
+            self.anim_mode = 'l'
+        elseif self.anim_playing == 'rex' then
+            self.anim_mode = 'r'
+        end
         self.frame = 1
     else
         self.frame = self.frame + 1

@@ -14,9 +14,9 @@ end
 function player:update()
     _task.continue(self)
     if love.keyboard.isDown('left') then
-        self.anim_mode = 'l'
+        self.anim_mode = 'lex'
     elseif love.keyboard.isDown('right') then
-        self.anim_mode = 'r'
+        self.anim_mode = 'rex'
     else
         self.anim_mode = 'n'
     end
