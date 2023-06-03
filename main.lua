@@ -4,7 +4,7 @@ local function bullet(x, y, r, num)
     for i = 1, num do
         _new(_class_sprite, _image.bullet_map1)
         _last.quad = _quad_group.bullet_map1
-        _last.frame = 'scale_red'
+        _last.frame = 'circle_blue'
         _last.ox = 8
         _last.oy = 8
         _last.r = r*math.pi/180 + 360/num*i*math.pi/180
@@ -19,18 +19,17 @@ local function bullet(x, y, r, num)
 end
 
 function love.load()
-    _load_font('unifont.TTF', 'unifont', 20)
+    require 'flandre.bullet'
+    _load_image('flanlogo.png', 'flanlogo')
+    --[[ _load_font('unifont.TTF', 'unifont', 20)
     require 'flandre.bullet'
     _new(_class_object)
     _task.new(_last, function ()
-        for i = 1, 100 do
+        for i = 1, 17 do
             bullet(_scn.origin_width()/2,_scn.origin_height()/2,20*i,30)
             _task.wait(15)
         end
-    end)
-    _new(_class_text, '你好')
-    _last:set_align('l')
-    _last.font = _font.unifont
+    end) ]]
 end
 
 function love.update()

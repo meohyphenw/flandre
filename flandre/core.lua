@@ -1,3 +1,4 @@
+local deep = require 'flandre.deep'
 local core = {}
 
 core.object = {}
@@ -13,6 +14,15 @@ core.music = {}
 ---`core.new` 函数最后实例化的对象。与LuaSTG不同，此变量不会重复赋值，而是在实例对象时赋值
 core.last = nil
 core.nilindex = {}
+
+LAYER_DEBUG = 70
+LAYER_UI =60
+LAYER_ENEMY_BULLET = 50
+LAYER_ITEM = 40
+LAYER_PLAYER = 30
+LAYER_PLATER_BULLET = 20
+LAYER_ENEMY = 10
+LAYER_BACKGROUND = 0
 
 ---获取对象池长度
 ---@return integer
@@ -83,7 +93,7 @@ function core.rmv(o)
     end
 end
 
----更新（由于flandre.task.wait不受deltatime的影响，所以舍去dt）
+---更新
 function core.update()
     for _,v in pairs(core.object) do
         if v.update and v.is_using and v.is_active then
@@ -95,10 +105,11 @@ end
 ---绘制
 function core.draw()
     for _,v in pairs(core.object) do
-        if v.draw and v.is_using and v.is_draw then
-            v:draw()
+        if v.draw and v.is_using and v.is_draw and v.layer then
+            deep.queue(v.layer, v.draw, v)
         end
     end
+    deep.execute()
 end
 
 ---加载图像

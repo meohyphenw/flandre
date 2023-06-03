@@ -5,10 +5,11 @@ local sprite = _class('sprite', _class_object)
 ---判定形状（圆形或矩形）
 ---@alias flandre.sprite.shape 'c' | 'r'
 
----@param i love.Image
+---@param i? love.Image
 function sprite:initialize(i)
     _class_object.initialize(self)
-    self.image = i ---@type love.Image
+    self.layer = 0
+    self.image = i ---@type love.Image | nil
     self.quad = nil ---@type love.Quad | table
     self.frame = 1 ---@type integer | string
     self.cr = 1 ---@type number color red
