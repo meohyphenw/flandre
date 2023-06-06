@@ -26,7 +26,7 @@ function love.load()
     require 'res.player'
     require 'res.background'
 
-    require 'script.title'
+    dofile 'script/launch.lua'
     --_new(_class_player, _image.pl00, _quad_group.pl00_normal, _quad_group.pl00_left, _quad_group.pl00_right, _quad_group.pl00_leftex, _quad_group.pl00_rightex, 3)
 end
 
