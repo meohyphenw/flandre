@@ -10,7 +10,7 @@ function object:initialize()
     self.task = {} ---@type table 此对象包含的任务
 end
 
----`_new` 返回前调用此回调，所以在 `_new` 更改此函数就没有用了
+---`_new` 返回前调用此回调，所以在 `_new` 调用后更改此函数就没有用了
 function object:before() end
 
 ---`_rmv` 删除前调用此回调

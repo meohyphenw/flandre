@@ -6,6 +6,7 @@ local animation = _class('animation', _class_sprite)
 
 function animation:initialize()
     _class_sprite.initialize(self)
+    self.time = 1
     self.anim_normal = nil ---@type table
     self.anim_left = nil ---@type table
     self.anim_right = nil ---@type table
@@ -19,7 +20,8 @@ function animation:update()
     _task.continue(self)
 end
 
-function animation:update_anim()
+---协程only
+function animation:continue_anim()
     if self.anim_mode ~= self.anim_playing then
         if self.anim_mode == 'n' then
             self.anim_playing = 'n'
@@ -48,6 +50,7 @@ function animation:update_anim()
     else
         self.frame = self.frame + 1
     end
+    _task.wait(self.time)
 end
 
 return animation

@@ -69,7 +69,7 @@ end
 ---在对象池中实例指定类，返回对象池中该实例对象的引用，如果 `c` 不是一个类，则返回nil
 ---@param c flandre.new 类
 ---@param ...unknown
----@return table 在对象池中的对象引用
+---@return table value
 function core.newex(c, ...)
     return core.object[core.new(c, ...)]
 end
