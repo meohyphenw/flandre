@@ -9,12 +9,12 @@ function task:new(func)
     table.insert(self.task, coroutine.create(func))
 end
 
-function task:continue(dt)
+function task:continue()
     if self.task then
         if next(self.task) then --?
             for _, t in pairs(self.task) do
                 if coroutine.status(t) ~= "dead" then
-                    coroutine.resume(t, dt)
+                    coroutine.resume(t)
                 end
             end
         end

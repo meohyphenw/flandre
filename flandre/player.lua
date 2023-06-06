@@ -11,8 +11,8 @@ function player:initialize(n, l, r, lex, rex)
     self.anim_rightex = rex
 end
 
-function player:update(dt)
-    _task.continue(self, dt)
+function player:update()
+    _task.continue(self)
     if love.keyboard.isDown('left') then
         self.anim_mode = 'lex'
     elseif love.keyboard.isDown('right') then

@@ -16,8 +16,8 @@ function object:before() end
 ---`_rmv` 删除前调用此回调
 function object:after() end
 
-function object:update(dt)
-    _task.continue(self, dt)
+function object:update()
+    _task.continue(self)
 end
 
 function object:draw() end

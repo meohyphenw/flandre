@@ -95,10 +95,10 @@ function core.rmv(o)
 end
 
 ---更新
-function core.update(dt)
+function core.update()
     for _,v in pairs(core.object) do
         if v.update and v.is_using and v.is_active then
-            v:update(dt)
+            v:update()
         end
     end
 end

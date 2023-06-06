@@ -27,8 +27,8 @@ function sprite:initialize(i)
     self.ky = 0 ---@type number
 end
 
-function sprite:update(dt)
-    _task.continue(self, dt)
+function sprite:update()
+    _task.continue(self)
 end
 
 function sprite:draw()
