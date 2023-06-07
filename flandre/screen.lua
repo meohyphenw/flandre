@@ -31,8 +31,8 @@ local ratio = {
 	_1920x1080_HEIGHT = 1080/ORIGIN_HEIGHT,
 	_2560x1440_WIDTH = 2560/ORIGIN_WIDTH,
 	_2560x1440_HEIGHT = 1440/ORIGIN_HEIGHT,
-	AUTO_WIDTH = get_window_size(true)/ORIGIN_WIDTH,
-	AUTO_HEIGHT = get_window_size(false)/ORIGIN_HEIGHT
+	auto_width = get_window_size(true)/ORIGIN_WIDTH,
+	auto_height = get_window_size(false)/ORIGIN_HEIGHT
 }
 
 local ratio_width = ratio.AUTO_WIDTH
@@ -62,9 +62,31 @@ function screen.change()
 end
 
 ---更新自动比例
-function screen.update()
-	ratio.AUTO_WIDTH = get_window_size(true)/ORIGIN_WIDTH
-	ratio.AUTO_HEIGHT = get_window_size(false)/ORIGIN_HEIGHT
+function screen.update(m)
+	ratio.auto_width = get_window_size(true)/ORIGIN_WIDTH
+	ratio.auto_height = get_window_size(false)/ORIGIN_HEIGHT
+	if m == 'auto' then
+		ratio_width = ratio.auto_width
+		ratio_height = ratio.auto_height
+	elseif m == '1024x576' then
+		ratio_width = ratio._1024x576_WIDTH
+		ratio_height = ratio._1024x576_HEIGHT
+	elseif m == '1280x720' then
+		ratio_width = ratio._1280x720_WIDTH
+		ratio_height = ratio._1280x720_HEIGHT
+	elseif m == '1366x768' then
+		ratio_width = ratio._1366x768_WIDTH
+		ratio_height = ratio._1366x768_HEIGHT
+	elseif m == '1600x900' then
+		ratio_width = ratio._1600x900_WIDTH
+		ratio_height = ratio._1600x900_HEIGHT
+	elseif m == '1920x1080' then
+		ratio_width = ratio._1920x1080_WIDTH
+		ratio_height = ratio._1920x1080_HEIGHT
+	elseif m == '2560x1440' then
+		ratio_width = ratio._2560x1440_WIDTH
+		ratio_height = ratio._1024x576_HEIGHT
+	end
 end
 
 return screen
