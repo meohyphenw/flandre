@@ -94,6 +94,17 @@ function core.rmv(o)
     end
 end
 
+---清空所有对象
+---@param f function? 清空后执行的操作
+function core.clear(f)
+    for k, _ in pairs(core.object) do
+        core.rmv(k)
+    end
+    if f then
+        f()
+    end
+end
+
 ---更新
 function core.update()
     for _,v in pairs(core.object) do
@@ -222,6 +233,14 @@ function core.unload_sound(n)
     core.sound[n] = nil
 end
 
+---设置音效音量
+---@param v number 0~1
+function core.set_sound_volume(v)
+    for _, s in pairs(core.sound) do
+        s:setVolume(v)
+    end
+end
+
 ---加载音乐
 ---@param p string 音乐位置
 ---@param n string 音乐名
@@ -233,6 +252,14 @@ end
 ---@param n string 音乐名
 function core.unload_music(n)
     core.music[n] = nil
+end
+
+---设置音效音量
+---@param v number 0~1
+function core.set_music_volume(v)
+    for _, m in pairs(core.music) do
+        m:setVolume(v)
+    end
 end
 
 return core

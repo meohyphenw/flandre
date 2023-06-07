@@ -11,14 +11,16 @@ function text:initialize(c)
 end
 
 function text:draw()
-    love.graphics.setColor(self.cr, self.cg, self.cb, self.ca)
-    if self.font then
-        love.graphics.setFont(self.font)
-    end
-    if self.is_fmt then
-        love.graphics.printf(self.content, self._x, self._y, self.lmt, self.txtagn, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
-    else
-        love.graphics.print(self.content, self._x, self._y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+    if self.content then
+        love.graphics.setColor(self.cr, self.cg, self.cb, self.ca)
+        if self.font then
+            love.graphics.setFont(self.font)
+        end
+        if self.is_fmt then
+            love.graphics.printf(self.content, self._x, self._y, self.lmt, self.txtagn, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+        else
+            love.graphics.print(self.content, self._x, self._y, self.r, self.sx, self.sy, self.ox, self.oy, self.kx, self.ky)
+        end
     end
 end
 

@@ -1,5 +1,5 @@
 function love.conf(t)
-    t.window.title = 'Touhou Retuened Dusty Stars ~ Memories Lost in the Galaxy'
+    t.window.title = 'Flandre'
     t.modules.joystick = false
     t.modules.physics = false
     t.console = true

@@ -53,6 +53,7 @@ _pn = flandre.core.objlen
 _new = flandre.core.new
 _newex = flandre.core.newex
 _rmv = flandre.core.rmv
+_clear = flandre.core.clear
 _load_image = flandre.core.load_image
 _unload_image = flandre.core.unload_image
 _load_quad = flandre.core.load_quad
@@ -72,6 +73,9 @@ flandre.screen = require('flandre.screen')
 _scn = flandre.screen
 _scn_rw = flandre.screen.ratio_width
 _scn_rh = flandre.screen.ratio_height
+
+flandre.user = require('flandre.user')
+_user = flandre.user
 
 flandre.object = require('flandre.object')
 _class_object = flandre.object

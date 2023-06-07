@@ -1,13 +1,11 @@
-local skip = true
+local skip = false
 _load_res 'res.font'
-_load_res 'res.background'
-_load_res 'res.se'
-_load_res 'res.music'
 local launch = _newex(_class_object)
 _task.new(launch, function ()
-    local tip = _newex(_class_text, 'Original: 上海アリス幻楽団')
+    local tip = _newex(_class_text)
     if not skip then
         _task.wait(100)
+        tip.content = 'Original: 上海アリス幻楽団'
         tip:set_align('l')
         tip.ofy = -20
         tip.font = _font.srcmincho
@@ -17,6 +15,9 @@ _task.new(launch, function ()
         _tween.to(tip, 1.5, {ca = 1})
         _task.wait(120)
     end
+    _load_res 'res.background'
+    _load_res 'res.se'
+    _load_res 'res.music'
     _load_res 'res.bullet'
     _load_res 'res.player'
     _load_res 'res.enemy'
@@ -26,7 +27,7 @@ _task.new(launch, function ()
         _tween.to(tip, 1.5, {ca = 0})
         _task.wait(120)
     end
-    dofile 'script/title.lua'
+    dofile 'script/ui/title.lua'
     local mask = _new(_class_sprite)
     _last.layer = LAYER_UI + 1
     _last.draw = function (self)
@@ -37,4 +38,5 @@ _task.new(launch, function ()
         _rmv(mask)
     end)
     _rmv(tip)
+    _rmv(launch)
 end)

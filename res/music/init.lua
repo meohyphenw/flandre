@@ -1,0 +1,1 @@
+--_load_music('res/music/lstg.ogg', 'bg')
