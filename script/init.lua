@@ -1,20 +1,22 @@
 local skip = false
-_load_res 'res.font'
 local launch = _newex(_class_object)
 _task.new(launch, function ()
-    local tip = _newex(_class_text)
+    _load_image('res/ui/tip.png', 'tip')
+    local tip = _newex(_class_unit)
     if not skip then
         _task.wait(100)
-        tip.content = 'Original: 上海アリス幻楽団'
-        tip:set_align('l')
-        tip.ofy = -20
-        tip.font = _font.srcmincho
-        tip.is_fmt = true
-        tip.txtagn = 'center'
+        tip.image = _image.tip
+        tip:set_align('c')
+        tip.ox = 288
+        tip.oy = 128
+        tip.sx = 0.55
+        tip.sy = 0.55
         tip.ca = 0
         _tween.to(tip, 1.5, {ca = 1})
         _task.wait(120)
     end
+    _load_res 'res.ui'
+    _load_res 'res.font'
     _load_res 'res.background'
     _load_res 'res.se'
     _load_res 'res.music'
