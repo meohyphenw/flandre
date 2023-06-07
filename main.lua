@@ -21,12 +21,7 @@ local function bullet(x, y, r, num)
 end
 
 function love.load()
-    require 'res.font'
-    require 'res.bullet'
-    require 'res.player'
-    require 'res.background'
-
-    dofile 'script/launch.lua'
+    _load_res 'script'
     --_new(_class_player, _image.pl00, _quad_group.pl00_normal, _quad_group.pl00_left, _quad_group.pl00_right, _quad_group.pl00_leftex, _quad_group.pl00_rightex, 3)
 end
 

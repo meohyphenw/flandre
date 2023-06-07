@@ -15,13 +15,13 @@ _task.new(optmgr, function (self)
                 if self.useropt ~= 1 then
                     self.useropt = self.useropt - 1
                 else
-                    self.useropt = 3
+                    self.useropt = 4
                 end
             end
             _task.wait(8)
         elseif is_down('down') then
             if self.useroom == 1 then
-                if self.useropt ~= 3 then
+                if self.useropt ~= 4 then
                     self.useropt = self.useropt + 1
                 else
                     self.useropt = 1
@@ -36,6 +36,8 @@ _task.new(optmgr, function (self)
                     self.useroom = 3
                 elseif self.useropt == 3 then
                     self.useroom = 4
+                elseif self.useropt == 4 then
+                    love.event.quit()
                 end
             end
         elseif is_down('x') then
@@ -51,9 +53,10 @@ opt[1] = {}
 
 --避免focus1获取到错误的y值
 local opty1 = {
-    [1] = _scn.origin_height() -145,
-    [2] = _scn.origin_height() -110,
-    [3] = _scn.origin_height() -75
+    [1] = _scn.origin_height() -180,
+    [2] = _scn.origin_height() -145,
+    [3] = _scn.origin_height() -110,
+    [4] = _scn.origin_height() -75
 }
 
 local focus1 = _newex(_class_sprite)
@@ -109,14 +112,14 @@ _last.update = function (self)
             self.tween:stop()
         end
         if optmgr.useroom == 1 then
-            _tween.to(self, 0.6, {ofy = -145})
+            self.tween = _tween.to(self, 0.5, {ofy = -180})
         else
-            _tween.to(self, 0.8, {ofy = 150}):ease('quadin')
+            self.tween = _tween.to(self, 0.8, {ofy = 150}):ease('quadin')
         end
         self.selfroom = optmgr.useroom
     end
 end
-_tween.to(_last, 0.8, {ofy = -145})
+_tween.to(_last, 0.5, {ofy = -180})
 
 opt[1][2] = _newex(_class_text, 'Extra')
 _last:set_align('lb')
@@ -138,14 +141,14 @@ _last.update = function (self)
             self.tween:stop()
         end
         if optmgr.useroom == 1 then
-            _tween.to(self, 0.7, {ofy = -110})
+            self.tween = _tween.to(self, 0.6, {ofy = -145})
         else
-            _tween.to(self, 0.7, {ofy = 150}):ease('quadin')
+            self.tween = _tween.to(self, 0.7, {ofy = 150}):ease('quadin')
         end
         self.selfroom = optmgr.useroom
     end
 end
-_tween.to(_last, 0.9, {ofy = -110})
+_tween.to(_last, 0.6, {ofy = -145})
 
 opt[1][3] = _newex(_class_text, 'Config')
 _last:set_align('lb')
@@ -167,14 +170,43 @@ _last.update = function (self)
             self.tween:stop()
         end
         if optmgr.useroom == 1 then
-            _tween.to(self, 0.8, {ofy = -75})
+            self.tween = _tween.to(self, 0.7, {ofy = -110})
         else
-            _tween.to(self, 0.6, {ofy = 150}):ease('quadin')
+            self.tween = _tween.to(self, 0.6, {ofy = 150}):ease('quadin')
         end
         self.selfroom = optmgr.useroom
     end
 end
-_tween.to(_last, 1, {ofy = -75}):oncomplete(function ()
+_tween.to(_last, 0.7, {ofy = -110})
+
+opt[1][4] = _newex(_class_text, 'Quit')
+_last:set_align('lb')
+_last.ofy = 150
+_last.font = _font.gothici
+_last.is_fmt = true
+_last.txtagn = 'center'
+_last.selfroom = 1
+_last.tween = nil
+_last.update = function (self)
+    _class_text.update(self)
+    if optmgr.useropt ~= 4 then
+        self.ca = 0.5
+    else
+        self.ca = 1
+    end
+    if self.selfroom ~= optmgr.useroom then
+        if self.tween then
+            self.tween:stop()
+        end
+        if optmgr.useroom == 1 then
+            self.tween = _tween.to(self, 0.8, {ofy = -75})
+        else
+            self.tween = _tween.to(self, 0.5, {ofy = 150}):ease('quadin')
+        end
+        self.selfroom = optmgr.useroom
+    end
+end
+_tween.to(_last, 0.8, {ofy = -75}):oncomplete(function ()
     focus1.y = opty1[optmgr.useropt] + 3
     focus1.resulty = opty1[optmgr.useropt] + 3
     _tween.to(focus1, 0.35, {ca = 0.3})
