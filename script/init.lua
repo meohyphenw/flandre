@@ -29,7 +29,7 @@ _task.new(launch, function ()
         _tween.to(tip, 1.5, {ca = 0})
         _task.wait(120)
     end
-    dofile 'script/ui/title.lua'
+    _do_script 'script.ui.title'
     local mask = _new(_class_sprite)
     _last.layer = LAYER_UI + 1
     _last.draw = function (self)
