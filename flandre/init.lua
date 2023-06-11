@@ -26,10 +26,16 @@ SOFTWARE.
 ]]
 }
 
----使用 "." 代替 "/" 和省略 "init.lua" 的 `dofile`
----@param fn string
-function _load_res(fn)
-    dofile(string.gsub(fn, '%.', '/') .. '/init.lua')
+---加载资源，直接输入文件夹名，省略 `init.lua`，`/`替换为'.'
+---@param n string
+function _load_res(n)
+    love.filesystem.load(string.gsub(n, '%.', '/') .. '/init.lua')()
+end
+
+---执行脚本，省略 `.lua`，`/`替换为'.'
+---@param n string
+function _do_script(n)
+    love.filesystem.load(string.gsub(n, '%.', '/'))()
 end
 
 flandre.flanstart = function() print(flandre._VERSION) end
