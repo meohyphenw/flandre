@@ -35,7 +35,7 @@ end
 ---执行脚本，省略 `.lua`，`/`替换为'.'
 ---@param n string
 function _do_script(n)
-    love.filesystem.load(string.gsub(n, '%.', '/'))()
+    love.filesystem.load(string.gsub(n, '%.', '/') .. '.lua')()
 end
 
 flandre.flanstart = function() print(flandre._VERSION) end
