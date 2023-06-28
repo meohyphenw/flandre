@@ -1,5 +1,4 @@
 local skip = true
-local real_skip = true
 local launch = _newex(_class_object)
 _task.new(launch, function ()
     _load_image('res/ui/tip.png', 'tip')
@@ -32,7 +31,7 @@ _task.new(launch, function ()
     end
     --_do_script 'script.ui.title'
     _do_script 'script.other.testscene'
-    if not real_skip then
+    if not skip then
         local mask = _new(_class_sprite)
         _last.layer = LAYER_UI + 1
         _last.draw = function (self)

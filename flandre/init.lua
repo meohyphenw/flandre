@@ -26,16 +26,19 @@ SOFTWARE.
 ]]
 }
 
----加载资源，直接输入文件夹名，省略 `init.lua`，`/`替换为'.'
+---加载资源，使用 `require` 的路径风格（省略 `init.lua` ，`/` 替换为 `.` ）
+---加载错误并不会报错或者返回任何值，谨慎使用
 ---@param n string
 function _load_res(n)
     love.filesystem.load(string.gsub(n, '%.', '/') .. '/init.lua')()
 end
 
----执行脚本，省略 `.lua`，`/`替换为'.'
+---执行脚本并返回脚本中的返回值，使用 `require` 的路径风格（省略 `.lua` ，`/` 替换为 `.` ）
+---加载错误并不会报错或者返回任何其他值，谨慎使用
 ---@param n string
+---@return unknown
 function _do_script(n)
-    love.filesystem.load(string.gsub(n, '%.', '/') .. '.lua')()
+    return love.filesystem.load(string.gsub(n, '%.', '/') .. '.lua')()
 end
 
 flandre.flanstart = function() print(flandre._VERSION) end

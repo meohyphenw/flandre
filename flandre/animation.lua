@@ -1,4 +1,4 @@
----动画类，Sprite的扩展（用于Player，Boss，Enemy）
+---动画类，sprite的扩展
 ---@class flandre.animation : flandre.sprite
 local animation = _class('animation', _class_sprite)
 
@@ -6,13 +6,13 @@ local animation = _class('animation', _class_sprite)
 
 function animation:initialize()
     _class_sprite.initialize(self)
-    self.time = 1
+    self.delay = 1
     self.anim_normal = nil ---@type table
     self.anim_left = nil ---@type table
     self.anim_right = nil ---@type table
     self.anim_leftex = nil ---@type table 正在向左
     self.anim_rightex = nil ---@type table 正在向右
-    self.anim_mode = 'n' ---@type flandre.animation.animmode
+    self.anim_mode = 'lex' ---@type flandre.animation.animmode
     self.anim_playing = nil ---@type flandre.animation.animmode
 end
 
@@ -50,7 +50,7 @@ function animation:continue_anim()
     else
         self.frame = self.frame + 1
     end
-    _task.wait(self.time)
+    _task.wait(self.delay)
 end
 
 return animation
