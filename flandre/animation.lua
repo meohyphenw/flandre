@@ -17,7 +17,7 @@ function animation:initialize()
 
     _task.new(self, function ()
         while true do -- 这玩意看着好难受。。。
-            _class_animation.continue_anim(self)
+            _class_animation._continue_anim(self)
             _task.wait(self.delay)
         end
     end)
@@ -27,7 +27,7 @@ function animation:update()
     _task.continue(self)
 end
 
-function animation:continue_anim()
+function animation:_continue_anim()
     if self.anim_mode ~= self.anim_playing then
         if self.anim_mode == 'n' then
             self.anim_playing = 'n'
