@@ -167,7 +167,9 @@ _task.new(optmgr, function (self)
             elseif self.useroom == 2 then
                 _user.stage = self.useropt
                 _sound.ok:play()
-                leave()
+                leave(function ()
+                    _do_script('script.other.testscene')
+                end)
             end
             _task.wait(8)
         elseif is_down('x') then

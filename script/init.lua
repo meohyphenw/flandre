@@ -1,4 +1,5 @@
-local skip = false
+local skip = true
+local real_skip = true
 local launch = _newex(_class_object)
 _task.new(launch, function ()
     _load_image('res/ui/tip.png', 'tip')
@@ -29,16 +30,19 @@ _task.new(launch, function ()
         _tween.to(tip, 1.5, {ca = 0})
         _task.wait(120)
     end
-    _do_script 'script.ui.title'
-    local mask = _new(_class_sprite)
-    _last.layer = LAYER_UI + 1
-    _last.draw = function (self)
-        love.graphics.setColor(0,0,0,self.ca)
-        love.graphics.rectangle("fill", 0, 0, _scn.origin_width(), _scn.origin_height())
+    --_do_script 'script.ui.title'
+    _do_script 'script.other.testscene'
+    if not real_skip then
+        local mask = _new(_class_sprite)
+        _last.layer = LAYER_UI + 1
+        _last.draw = function (self)
+            love.graphics.setColor(0,0,0,self.ca)
+            love.graphics.rectangle("fill", 0, 0, _scn.origin_width(), _scn.origin_height())
+        end
+        _tween.to(_last, 1, {ca = 0}):oncomplete(function ()
+            _rmv(mask)
+        end)
     end
-    _tween.to(_last, 1, {ca = 0}):oncomplete(function ()
-        _rmv(mask)
-    end)
     _rmv(tip)
     _rmv(launch)
 end)
