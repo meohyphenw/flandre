@@ -14,13 +14,19 @@ function animation:initialize()
     self.anim_rightex = nil ---@type table 正在向右
     self.anim_mode = 'lex' ---@type flandre.animation.animmode
     self.anim_playing = nil ---@type flandre.animation.animmode
+
+    _task.new(self, function ()
+        while true do -- 这玩意看着好难受。。。
+            _class_animation.continue_anim(self)
+            _task.wait(self.delay)
+        end
+    end)
 end
 
 function animation:update()
     _task.continue(self)
 end
 
----协程only
 function animation:continue_anim()
     if self.anim_mode ~= self.anim_playing then
         if self.anim_mode == 'n' then
@@ -50,7 +56,6 @@ function animation:continue_anim()
     else
         self.frame = self.frame + 1
     end
-    _task.wait(self.delay)
 end
 
 return animation

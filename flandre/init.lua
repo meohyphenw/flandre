@@ -1,6 +1,6 @@
 _class = require 'flandre.middleclass'
 local flandre = {
-_VERSION = 'Flandre v1.0.0',
+_VERSION = 'Flandre v0.1.0 dev 23.6.28-15:58',
 _LICENSE = [[
 MIT License
 

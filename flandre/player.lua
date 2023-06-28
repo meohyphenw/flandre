@@ -27,14 +27,6 @@ function player:initialize(i, n, l, r, lex, rex, delay, speed, speed_slow, shoot
     self.dead = dead or function() end
 end
 
-function player:before()
-    _task.new(self, function ()
-        while true do
-            _class_animation.continue_anim(self)
-        end
-    end)
-end
-
 function player:update()
     _task.continue(self)
 end
