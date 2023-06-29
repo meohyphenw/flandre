@@ -44,7 +44,7 @@ function core.new(c, ...)
             local index = table.remove(core.nilindex)
             core.object[index] = c:new(...)
             core.last = core.object[index]
-            core.last.index = index
+            core.last._index = index
             _last = core.last
             if core.last.before then
                 core.last:before()
@@ -54,7 +54,7 @@ function core.new(c, ...)
             table.insert(core.object, c:new(...))
             local l = core.objlen()
             core.last = core.object[l]
-            core.last.index = l
+            core.last._index = l
             _last = core.last
             if core.last.before then
                 core.last:before()
@@ -84,12 +84,12 @@ function core.rmv(o)
         core.object[o] = nil
         table.insert(core.nilindex, o)
     elseif type(o) == 'table' then
-        if o.index and o.index > 0 then
+        if o._index and o._index > 0 then
             if core.object[o].after then
                 core.object[o]:after()
             end
-            core.object[o.index] = nil
-            table.insert(core.nilindex, o.index)
+            core.object[o._index] = nil
+            table.insert(core.nilindex, o._index)
         end
     end
 end

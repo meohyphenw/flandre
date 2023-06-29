@@ -1,4 +1,4 @@
----相当于可以显示图片的interface
+---可以显示图片的interface
 ---@class flandre.unit : flandre.interface
 local unit = _class('unit', _class_interface)
 

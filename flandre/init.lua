@@ -1,6 +1,6 @@
 _class = require 'flandre.middleclass'
 local flandre = {
-_VERSION = 'Flandre v0.1.0 dev 23.6.28-15.59',
+_VERSION = 'Flandre v0.1.0 dev 23.6.29-10.52',
 _LICENSE = [[
 MIT License
 
@@ -91,6 +91,9 @@ _class_object = flandre.object
 
 flandre.sprite = require('flandre.sprite')
 _class_sprite = flandre.sprite
+
+flandre.drawable = require('flandre.drawable')
+_class_drawable = flandre.drawable
 
 flandre.interface = require('flandre.interface')
 _class_interface = flandre.interface
