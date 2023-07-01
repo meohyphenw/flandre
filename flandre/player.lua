@@ -23,27 +23,31 @@ end
 function player:before()
     _task.new(self, function ()
         while true do
-            _class_animation.update(self)
-            _task.wait(self.delay)
+            if is_down('left') then
+                print('set l')
+                self:set_anim_state('l')
+                while is_down('left') do
+                    coroutine.yield()
+                end
+                print('set n')
+                self:set_anim_state('n')
+            end
+            if is_down('right') then
+                print('set r')
+                self:set_anim_state('r')
+                while is_down('right') do
+                    coroutine.yield()
+                end
+                print('set n')
+                self:set_anim_state('n')
+            end
+            coroutine.yield()
         end
     end)
     _task.new(self, function ()
         while true do
-            if is_down('left') then
-                self:set_anim_mode('l')
-                while is_down('left') do
-                    coroutine.yield()
-                end
-                self:set_anim_mode('n')
-            elseif is_down('right') then
-                self:set_anim_mode('r')
-                while is_down('right') do
-                    coroutine.yield()
-                end
-                self:set_anim_mode('n')
-            else
-                coroutine.yield()
-            end
+            _class_animation.update_anim(self)
+            _task.wait(self.delay)
         end
     end)
 end
