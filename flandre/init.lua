@@ -98,8 +98,8 @@ _class_drawable = flandre.drawable
 flandre.interface = require('flandre.interface')
 _class_interface = flandre.interface
 
-flandre.unit = require('flandre.unit')
-_class_unit = flandre.unit
+flandre.drawable_ui = require('flandre.drawable_ui')
+_class_drawable_ui = flandre.drawable_ui
 
 flandre.text = require('flandre.text')
 _class_text = flandre.text

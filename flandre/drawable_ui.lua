@@ -1,15 +1,15 @@
 ---可以显示图片的interface
----@class flandre.unit : flandre.interface
-local unit = _class('unit', _class_interface)
+---@class flandre.drawable_ui : flandre.interface
+local drawable_ui = _class('drawable_ui', _class_interface)
 
-function unit:initialize(i)
+function drawable_ui:initialize(i)
     _class_interface.initialize(self)
     self.image = i
     self.quad = nil
     self.frame = 1
 end
 
-function unit:draw()
+function drawable_ui:draw()
     if self.image then
         love.graphics.setColor(self.cr, self.cg, self.cb, self.ca)
         if type(self.quad) == 'nil' then
@@ -22,4 +22,4 @@ function unit:draw()
     end
 end
 
-return unit
+return drawable_ui

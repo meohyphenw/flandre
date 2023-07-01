@@ -1,6 +1,6 @@
 local is_down = love.keyboard.isDown
 
-_new(_class_unit, _image.titlebg)
+_new(_class_drawable_ui, _image.titlebg)
 
 local bgmv = 10
 local sev = 10

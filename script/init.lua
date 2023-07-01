@@ -2,7 +2,7 @@ local skip = true
 local launch = _newex(_class_object)
 _task.new(launch, function ()
     _load_image('res/ui/tip.png', 'tip')
-    local tip = _newex(_class_unit)
+    local tip = _newex(_class_drawable_ui)
     if not skip then
         _task.wait(100)
         tip.image = _image.tip
