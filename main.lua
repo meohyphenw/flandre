@@ -20,5 +20,6 @@ end
 function love.draw()
     flandre.screen.change()
     flandre.core.draw()
+    flandre.replay.update()
     fps_graph:draw()
 end

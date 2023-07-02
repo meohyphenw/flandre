@@ -18,6 +18,13 @@ function player:initialize(i, n, l, r, lex, rex, delay, speed, speed_slow, shoot
     self.bomb = bomb or function() end
     self.slow = slow or function() end
     self.dead = dead or function() end
+
+    --用于replay的状态
+
+    self.is_shoot = false
+    self.is_slow = false
+    self.is_bomb = false
+    self.is_paradox = false
 end
 
 function player:before()
@@ -25,21 +32,21 @@ function player:before()
         while true do
             if is_down('left') then
                 print('set l')
-                self:set_anim_state('l')
+                self:set_anim_state(-1)
                 while is_down('left') do
                     coroutine.yield()
                 end
                 print('set n')
-                self:set_anim_state('n')
+                self:set_anim_state(0)
             end
             if is_down('right') then
                 print('set r')
-                self:set_anim_state('r')
+                self:set_anim_state(1)
                 while is_down('right') do
                     coroutine.yield()
                 end
                 print('set n')
-                self:set_anim_state('n')
+                self:set_anim_state(0)
             end
             coroutine.yield()
         end

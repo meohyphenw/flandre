@@ -86,6 +86,9 @@ _scn_rh = flandre.screen.ratio_height
 flandre.user = require('flandre.user')
 _user = flandre.user
 
+flandre.replay = require('flandre.replay')
+_replay = flandre.replay
+
 flandre.object = require('flandre.object')
 _class_object = flandre.object
 
