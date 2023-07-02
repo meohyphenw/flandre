@@ -1,4 +1,3 @@
-
 function love.load()
     flandre = require 'flandre'
     _load_res 'script'
