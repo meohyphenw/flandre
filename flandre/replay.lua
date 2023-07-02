@@ -1,12 +1,10 @@
 local replay = {}
 
-replay.seed = 0
-replay.content = {}
-replay.markable = {}
-replay.frame = 1
-replay.frames_number = 0
-replay.finished = false
-
+local finished = false
+local frames_number = 0
+local frame = 1
+local markable = {}
+local content = {}
 local func = nil
 
 ---@param mode 'r' | 'w'
@@ -27,51 +25,55 @@ end
 ---标记一个玩家
 ---@param player flandre.player
 function replay.mark(player)
-    table.insert(replay.markable, player)
+    table.insert(markable, player)
 end
 
 function replay.update_frames_number()
-    replay.frames_number = #replay.content
+    frames_number = #content
 end
 
 function replay.reset()
-    replay.frame = 1
-    replay.finished = false
+    frame = 1
+    finished = false
     replay.update_frames_number()
 end
 
+function replay.clear()
+    content = {}
+end
+
 function replay.write()
-    if not replay.finished then
-        replay.content[replay.frame] = {}
-        local index = replay.content[replay.frame]
-        for i = 1, #replay.markable do -- 神秘的优化方式
+    if not finished then
+        content[frame] = {}
+        local index = content[frame]
+        for i = 1, #markable do -- 神秘的优化方式
             index[i] = {}
-            index[i][1] = replay.markable[i].x
-            index[i][2] = replay.markable[i].y
-            index[i][3] = replay.markable[i].is_shoot
-            index[i][4] = replay.markable[i].is_slow
-            index[i][5] = replay.markable[i].is_bomb
-            index[i][6] = replay.markable[i].is_paradox
+            index[i][1] = markable[i].x
+            index[i][2] = markable[i].y
+            index[i][3] = markable[i].is_shoot
+            index[i][4] = markable[i].is_slow
+            index[i][5] = markable[i].is_bomb
+            index[i][6] = markable[i].is_paradox
         end
-        replay.frame = replay.frame + 1
+        frame = frame + 1
     end
 end
 
 function replay.read()
-    if not replay.finished then
-        local index = replay.content[replay.frame]
-        for i = 1, #replay.markable do
-            replay.markable[i].x = index[i][1]
-            replay.markable[i].y = index[i][2]
-            replay.markable[i].is_shoot = index[i][3]
-            replay.markable[i].is_slow = index[i][4]
-            replay.markable[i].is_bomb = index[i][5]
-            replay.markable[i].is_paradox = index[i][6]
+    if not finished then
+        local index = content[frame]
+        for i = 1, #markable do
+            markable[i].x = index[i][1]
+            markable[i].y = index[i][2]
+            markable[i].is_shoot = index[i][3]
+            markable[i].is_slow = index[i][4]
+            markable[i].is_bomb = index[i][5]
+            markable[i].is_paradox = index[i][6]
         end
-        if replay.frame >= replay.frames_number then -- 好好想想为什么会有大于所有帧数量的情况
-            replay.finished = true
+        if frame >= frames_number then -- 好好想想为什么会有大于所有帧数量的情况
+            finished = true
         else
-            replay.frame = replay.frame + 1
+            frame = frame + 1
         end
     end
 end

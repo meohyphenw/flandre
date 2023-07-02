@@ -14,37 +14,30 @@ end
 
 function test_player:before()
     _task.new(self, function ()
-        while true do
-            if is_down('left') then
-                self.x = self.x - 5
-                coroutine.yield()
-            end
-            if is_down('right') then
-                self.x = self.x + 5
-                coroutine.yield()
-            end
-            if is_down('up') then
-                self.y = self.y - 5
-                coroutine.yield()
-            end
-            if is_down('down') then
-                self.y = self.y + 5
-                coroutine.yield()
-            end
-            print('frame state: ', self.x, self.y, self.is_shoot, self.is_slow, self.is_bomb, self.is_paradox, _replay.finished)
-            coroutine.yield()
-        end
-    end)
-    _task.new(self, function ()
         while not is_down('q') do
             coroutine.yield()
         end
         _replay.reset()
         _replay.set_mode('r')
-        print(_replay.content[1])
     end)
 end
 
+function test_player:update()
+    _task.continue(self)
+    if is_down('left') then
+        self.x = self.x - 5
+    end
+    if is_down('right') then
+        self.x = self.x + 5
+    end
+    if is_down('up') then
+        self.y = self.y - 5
+    end
+    if is_down('down') then
+        self.y = self.y + 5
+    end
+    print('frame state: ', self.x, self.y, self.is_shoot, self.is_slow, self.is_bomb, self.is_paradox)
+end
 
 _replay.set_mode('w')
 _replay.mark(_newex(test_player))
