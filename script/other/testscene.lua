@@ -84,7 +84,7 @@ function test_player:update()
     if is_down('down') then
         self.y = self.y + 5
     end
-    print('frame state: ', self.x, self.y, self.is_shoot, self.is_slow, self.is_bomb, self.is_paradox)
+    --print('frame state: ', self.x, self.y, self.is_shoot, self.is_slow, self.is_bomb, self.is_paradox)
 end
 
 _replay.set_mode('w')

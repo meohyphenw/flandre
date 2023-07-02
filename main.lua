@@ -1,11 +1,5 @@
-local utf8 = require("utf8")
-local debug_graph = require 'flandre.debugGraph'
-local fps_graph = debug_graph:new('fps', 0, 0, 200, 70)
-
-local text = nil
 
 function love.load()
-    love.keyboard.setKeyRepeat(true)
     flandre = require 'flandre'
     _load_res 'script'
     --_new(_class_player, _image.pl00, _quad_group.pl00_normal, _quad_group.pl00_left, _quad_group.pl00_right, _quad_group.pl00_leftex, _quad_group.pl00_rightex, 3)
@@ -14,12 +8,10 @@ end
 function love.update(dt)
     flandre.core.update()
     _tween.update(0.0166666667)
-    fps_graph:update(dt)
+    flandre.replay.update()
 end
 
 function love.draw()
     flandre.screen.change()
     flandre.core.draw()
-    flandre.replay.update()
-    fps_graph:draw()
 end
