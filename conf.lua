@@ -1,4 +1,5 @@
 function love.conf(t)
+    t.identity = 'th_xch'
     t.window.title = 'Flandre'
     t.modules.joystick = false
     t.modules.physics = false

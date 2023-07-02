@@ -20,6 +20,54 @@ function test_player:before()
         _replay.reset()
         _replay.set_mode('r')
     end)
+    _task.new(self, function ()
+        while true do
+            if is_down('z') then
+                self.is_shoot = true
+                while is_down('z') do
+                    coroutine.yield()
+                end
+                self.is_shoot = false
+            end
+            coroutine.yield()
+        end
+    end)
+    _task.new(self, function ()
+        while true do
+            if is_down('x') then
+                self.is_bomb = true
+                while is_down('x') do
+                    coroutine.yield()
+                end
+                self.is_bomb = false
+            end
+            coroutine.yield()
+        end
+    end)
+    _task.new(self, function ()
+        while true do
+            if is_down('c') then
+                self.is_paradox = true
+                while is_down('c') do
+                    coroutine.yield()
+                end
+                self.is_paradox = false
+            end
+            coroutine.yield()
+        end
+    end)
+    _task.new(self, function ()
+        while true do
+            if is_down('lshift') then
+                self.is_slow = true
+                while is_down('lshift') do
+                    coroutine.yield()
+                end
+                self.is_slow = false
+            end
+            coroutine.yield()
+        end
+    end)
 end
 
 function test_player:update()
