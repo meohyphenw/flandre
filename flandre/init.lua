@@ -43,8 +43,8 @@ end
 
 flandre.flanstart = function() print(flandre._VERSION) end
 
-flandre.flux = require('flandre.flux')
-_tween = flandre.flux -- flux的补间库
+flandre.tween = require('flandre.flux')
+_tween = flandre.tween -- flux的补间库
 
 flandre.task = require("flandre.task")
 _task = flandre.task

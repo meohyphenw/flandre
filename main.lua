@@ -5,7 +5,7 @@ end
 
 function love.update()
     flandre.core.update()
-    _tween.update(0.0166666667)
+    flandre.tween.update(0.0166666667)
 end
 
 function love.draw()
