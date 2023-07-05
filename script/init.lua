@@ -30,7 +30,6 @@ _task.new(launch, function ()
         _task.wait(120)
     end
     _do_script 'script.ui.title'
-    --_do_script 'script.other.testscene'
     if not skip then
         local mask = _new(_class_sprite)
         _last.layer = LAYER_UI + 1
