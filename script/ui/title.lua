@@ -168,7 +168,7 @@ _task.new(optmgr, function (self)
                 _user.stage = self.useropt
                 _sound.ok:play()
                 leave(function ()
-                    _do_script('script.other.testscene')
+                    _do_script('script.ui.world')
                 end)
             end
             _task.wait(8)
@@ -236,7 +236,7 @@ end
 opt[1][1] = _newex(_class_text, 'Start')
 _last:set_align('lb')
 _last.ofy = 150
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'center'
 _last.selfroom = optmgr.useroom
@@ -267,7 +267,7 @@ _tween.to(_last, 0.5, {ofy = -180})
 opt[1][2] = _newex(_class_text, 'Extra')
 _last:set_align('lb')
 _last.ofy = 150
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'center'
 _last.selfroom = optmgr.useroom
@@ -298,7 +298,7 @@ _tween.to(_last, 0.6, {ofy = -145})
 opt[1][3] = _newex(_class_text, 'Config')
 _last:set_align('lb')
 _last.ofy = 150
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'center'
 _last.selfroom = optmgr.useroom
@@ -329,7 +329,7 @@ _tween.to(_last, 0.7, {ofy = -110})
 opt[1][4] = _newex(_class_text, 'Quit')
 _last:set_align('lb')
 _last.ofy = 150
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'center'
 _last.selfroom = optmgr.useroom
@@ -372,7 +372,7 @@ local opty2 = {
 room2t = _newex(_class_text, 'Difficulty Select')
 _last:set_align('lt')
 _last.ofy = -150
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'center'
 _last.selfroom = optmgr.useroom
@@ -431,7 +431,7 @@ opt[2][1] = _newex(_class_text, 'Normal')
 _last:set_align('r')
 _last.ofx = 0
 _last.ofy = -35
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'center'
 _last.selfroom = optmgr.useroom
@@ -462,7 +462,7 @@ opt[2][2] = _newex(_class_text, 'Lunatic')
 _last:set_align('r')
 _last.ofx = 0
 _last.ofy = 0
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'center'
 _last.selfroom = optmgr.useroom
@@ -493,7 +493,7 @@ opt[2][3] = _newex(_class_text, 'Spasmodic')
 _last:set_align('r')
 _last.ofx = 0
 _last.ofy = 35
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'center'
 _last.selfroom = optmgr.useroom
@@ -531,7 +531,7 @@ local opty3 = {
 room3t = _newex(_class_text, 'Config')
 _last:set_align('lt')
 _last.ofy = -150
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'center'
 _last.selfroom = optmgr.useroom
@@ -590,7 +590,7 @@ opt[3][1] = _newex(_class_text, 'BGM Volume:    ' .. tostring(bgmv*10) .. '%')
 _last:set_align('l')
 _last.ofx = -680
 _last.ofy = -35
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'left'
 _last.selfroom = optmgr.useroom
@@ -626,7 +626,7 @@ opt[3][2] = _newex(_class_text, 'SE Volume:         ' .. tostring(sev*10) .. '%'
 _last:set_align('l')
 _last.ofx = -680
 _last.ofy = 0
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'left'
 _last.selfroom = optmgr.useroom
@@ -662,7 +662,7 @@ opt[3][3] = _newex(_class_text, 'Full Screen:         ' .. tostring(is_fullscree
 _last:set_align('l')
 _last.ofx = -680
 _last.ofy = 35
-_last.font = _font.gothici
+_last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'left'
 _last.selfroom = optmgr.useroom
