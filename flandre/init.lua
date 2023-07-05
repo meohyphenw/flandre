@@ -113,5 +113,8 @@ _class_animation = flandre.animation
 flandre.player = require('flandre.player')
 _class_player = flandre.player
 
+flandre.bullet = require('flandre.bullet')
+_class_bullet = flandre.bullet
+
 flandre.flanstart()
 return flandre
