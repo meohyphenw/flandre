@@ -34,7 +34,7 @@ end
 
 _task.new(optmgr, function (self)
     --_music.bg:play()
-    --开头给你停一会防止第一次启动动画出bug
+    --开头停一会防止第一次启动动画出bug
     _task.wait(61)
     while true do
         if is_down('up') then

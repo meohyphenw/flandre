@@ -1,11 +1,13 @@
 --_new(_class_player, _image.pl00, _quad_group.pl00_normal, _quad_group.pl00_left, _quad_group.pl00_right, _quad_group.pl00_leftex, _quad_group.pl00_rightex, 3, 10,5)
---_new(_do_script('res.player.paradox_state'), {x = 100, y = 100})
-local o = _newex(_class_drawable)
+--_new(_class_drawable_ui, _image.titlebg)
+local o = _newex(_do_script('res.player.paradox_state'), {x = 100, y = 100})
+o:set_content(100)
+--[[ local o = _newex(_class_drawable)
 o.draw = function ()
     love.graphics.setFont(_font.paradox_state)
     love.graphics.print('hello', 0,0)
 end
-print(_font.paradox_state)
+print(_font.paradox_state) ]]
 
 --[[ local is_down = love.keyboard.isDown
 

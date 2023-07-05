@@ -5,12 +5,12 @@ local is_down = love.keyboard.isDown
 function paradox_state:initialize(player)
     _class_object.initialize(self)
     self._content = 0
-    self.font = _font.deng ---@type love.Font
+    self.font = _font.paradox_state ---@type love.Font
     self.distance = 50
     self.r = 0
     self.x = 0
     self.y = 0
-    self.layer = 0
+    self.layer = LAYER_PLAYER + 1
     self.words = {[0] = 'P', [1] = 'A', [2] = 'R', [3] = 'A', [4] = 'D', [5] = 'O', [6] = 'X',[7] = '0', [8] = '%'}
     self.ox = {}
     for k, v in pairs(self.words) do
