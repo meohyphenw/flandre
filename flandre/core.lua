@@ -208,7 +208,7 @@ end
 ---加载字体
 ---@param p string 字体位置
 ---@param n string 字体名
----@param s number 大小
+---@param s? number 大小
 ---@param h? "light"|"mono"|"none"|"normal"
 function core.load_font(p, n, s, h)
     core.font[n] = love.graphics.newFont(p, s, h)

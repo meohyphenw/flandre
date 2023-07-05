@@ -1,2 +1,2 @@
-_load_font('res/font/GOTHICI.TTF', 'gothici', 27)
-_load_font('res/font/DENG.TTF', 'deng', 16)
+_load_font('res/font/paradox_state.fnt', 'paradox_state')
+--_load_font('res/font/DENG.TTF', 'deng', 16)
