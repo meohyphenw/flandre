@@ -1,5 +1,8 @@
+#跳过素材文件
 *.ttf
 *.tga
 *.fnt
 *.png
 *.wav
+#跳过关卡脚本
+/script/stages

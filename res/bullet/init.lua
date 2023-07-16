@@ -1,5 +1,5 @@
 _load_image('res/bullet/bullet1.png', 'bullet_map1')
-_load_image('etbreak.png', 'etbreak')
+_load_image('res/bullet/etbreak.png', 'etbreak')
 _load_quad_group_batch(_image.bullet_map1, 'bullet_map1', {
     {224,0,16,16,'scale_black'}, {224,16,16,16,'scale_deep_red'}, {224,32,16,16,'scale_red'},
     {224,48,16,16,'scale_purple'}, {224,64,16,16,'scale_pink'}, {224,80,16,16,'scale_deep_blue'},
