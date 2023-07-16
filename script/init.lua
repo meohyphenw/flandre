@@ -1,4 +1,6 @@
+local debug_script = 'script.ui.world'
 local skip = true
+
 local launch = _newex(_class_object)
 _task.new(launch, function ()
     _load_image('res/ui/tip.png', 'tip')
@@ -29,7 +31,11 @@ _task.new(launch, function ()
         _tween.to(tip, 1.5, {ca = 0})
         _task.wait(120)
     end
-    _do_script 'script.ui.world'
+    if debug_script then
+        _do_script(debug_script)
+    else
+        _do_script 'script.ui.title'
+    end
     if not skip then
         local mask = _new(_class_sprite)
         _last.layer = LAYER_UI + 1
