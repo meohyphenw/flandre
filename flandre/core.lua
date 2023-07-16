@@ -85,8 +85,8 @@ function core.rmv(o)
         table.insert(core.nilindex, o)
     elseif type(o) == 'table' then
         if o._index and o._index > 0 then
-            if core.object[o].after then
-                core.object[o]:after()
+            if core.object[o._index].after then
+                core.object[o._index]:after()
             end
             core.object[o._index] = nil
             table.insert(core.nilindex, o._index)

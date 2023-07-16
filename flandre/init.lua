@@ -92,11 +92,14 @@ _replay = flandre.replay
 flandre.object = require('flandre.object')
 _class_object = flandre.object
 
-flandre.sprite = require('flandre.sprite')
-_class_sprite = flandre.sprite
+flandre.movable = require('flandre.movable')
+_class_movable = flandre.movable
 
 flandre.drawable = require('flandre.drawable')
 _class_drawable = flandre.drawable
+
+flandre.sprite = require('flandre.sprite')
+_class_sprite = flandre.sprite
 
 flandre.interface = require('flandre.interface')
 _class_interface = flandre.interface
