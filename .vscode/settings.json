@@ -1,7 +1,9 @@
 {
     "Lua.runtime.version": "LuaJIT",
     "Lua.runtime.special": {
-        "love.filesystem.load": "loadfile"
+        "love.filesystem.load": "loadfile",
+        "_load_res": "require",
+        "_do_script": "require"
     },
     "Lua.workspace.library": [
         "${3rd}/love2d/library"
