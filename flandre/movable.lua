@@ -13,6 +13,7 @@ function movable:initialize()
 end
 
 function movable:update()
+    _task.continue(self)
     self.x = self.x + self.vx
     self.y = self.y + self.vy
     if self.is_rtov then

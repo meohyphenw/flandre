@@ -64,11 +64,10 @@ function bullet:before()
     fog.oy = 16
     fog.sx = 1.8
     fog.sy = 1.8
-    fog.ca = 1
-    _tween.to(fog, 0.4, {sx = 0.8, sy = 0.8}):ease('linear'):oncomplete(function ()
+    _tween.to(fog, 0.4, {sx = 0.8, sy = 0.8, ca = 0}):ease('linear'):oncomplete(function ()
         _rmv(fog)
     end)
-    _tween.to(fog, 0.2, {ca = 0}):delay(0.2):ease('linear')
+    --_tween.to(fog, 0.2, {ca = 0}):delay(0.2):ease('linear')
 end
 
 function bullet:after()
@@ -83,7 +82,7 @@ function bullet:after()
     fog.y = self.y
     fog.ox = 32
     fog.oy = 32
-    _task.new(fog, function (self2)
+    _task.new(fog, function ()
         for i = 1, 8 do
             fog.frame = i
             _task.wait(2)
