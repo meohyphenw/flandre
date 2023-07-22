@@ -173,16 +173,27 @@ _task.new(optmgr, function (self)
             end
             _task.wait(8)
         elseif is_down('x') then
-            if self.useroom == 2 then
+            if self.useroom == 1 then
+                if self.useropt == 4 then
+                    leave()
+                    _sound.ok:play()
+                    _task.wait(60)
+                    love.event.quit()
+                else
+                    self.useropt = 4
+                    _sound.cancel:play()
+                end
+            elseif self.useroom == 2 then
                 tempopt[2] = self.useropt
                 self.useropt = tempopt[1]
                 self.useroom = 1
+                _sound.cancel:play()
             elseif self.useroom == 3 then
                 tempopt[3] = self.useropt
                 self.useropt = tempopt[1]
                 self.useroom = 1
+                _sound.cancel:play()
             end
-            _sound.cancel:play()
             _task.wait(8)
         end
         coroutine.yield()
@@ -233,128 +244,89 @@ focus1.draw = function (self)
     love.graphics.rectangle("fill", self.x, self.y, _scn.origin_width(), 32)
 end
 
-opt[1][1] = _newex(_class_text, 'Start')
-_last:set_align('lb')
-_last.ofy = 150
-_last.font = _font.title
-_last.is_fmt = true
-_last.txtagn = 'center'
-_last.selfroom = optmgr.useroom
-_last.tween = nil
-_last.update = function (self)
-    _class_text.update(self)
-    if optmgr.useroom == 1 then
-        if optmgr.useropt ~= 1 then
-            self.ca = 0.5
-        else
-            self.ca = 1
+---local function define start
+
+---@param room integer
+---@param optn integer
+---@param name string
+---@param pos number
+---@param pos_hide number
+---@param speed_in number
+---@param speed_out number
+local function new_opt_bottom(room, optn, name, pos, pos_hide, speed_in, speed_out)
+    opt[room][optn] = _newex(_class_text, name)
+    _last:set_align('lb')
+    _last.ofy = pos_hide
+    _last.font = _font.title
+    _last.is_fmt = true
+    _last.txtagn = 'center'
+    _last.selfroom = optmgr.useroom
+    _last.tween = nil
+    _last.update = function (self)
+        _class_text.update(self)
+        if optmgr.useroom == room then
+            if optmgr.useropt ~= optn then
+                self.ca = 0.5
+            else
+                self.ca = 1
+            end
         end
-    end
-    if self.selfroom ~= optmgr.useroom then
-        if self.tween then
-            self.tween:stop()
+        if self.selfroom ~= optmgr.useroom then
+            if self.tween then
+                self.tween:stop()
+            end
+            if optmgr.useroom == room then
+                self.tween = _tween.to(self, speed_in, {ofy = pos})
+            else
+                self.tween = _tween.to(self, speed_out, {ofy = pos_hide}):ease('quadin')
+            end
+            self.selfroom = optmgr.useroom
         end
-        if optmgr.useroom == 1 then
-            self.tween = _tween.to(self, 0.5, {ofy = -180})
-        else
-            self.tween = _tween.to(self, 0.8, {ofy = 150}):ease('quadin')
-        end
-        self.selfroom = optmgr.useroom
     end
 end
+
+local function new_title(room, name)
+    local title = _newex(_class_text, name)
+    _last:set_align('lt')
+    _last.ofy = -150
+    _last.font = _font.title
+    _last.is_fmt = true
+    _last.txtagn = 'center'
+    _last.selfroom = optmgr.useroom
+    _last.tween = nil
+    _last.update = function (self)
+        _class_text.update(self)
+        if self.selfroom ~= optmgr.useroom then
+            if self.tween then
+                self.tween:stop()
+            end
+            if optmgr.useroom == room then
+                _tween.to(self, 0.6, {ofy = 40})
+            else
+                _tween.to(self, 0.6, {ofy = -150}):ease('quadin')
+            end
+            self.selfroom = optmgr.useroom
+        end
+    end
+    return title
+end
+
+local function new_opt_center(room, optn, name, pos, pos_hide, speed_in, speed_out)
+    
+end
+
+---local function define end
+
+new_opt_bottom(1, 1, 'Start', -180, 150, 0.5, 0.8)
 _tween.to(_last, 0.5, {ofy = -180})
 
-opt[1][2] = _newex(_class_text, 'Extra')
-_last:set_align('lb')
-_last.ofy = 150
-_last.font = _font.title
-_last.is_fmt = true
-_last.txtagn = 'center'
-_last.selfroom = optmgr.useroom
-_last.tween = nil
-_last.update = function (self)
-    _class_text.update(self)
-    if optmgr.useroom == 1 then
-        if optmgr.useropt ~= 2 then
-            self.ca = 0.5
-        else
-            self.ca = 1
-        end
-    end
-    if self.selfroom ~= optmgr.useroom then
-        if self.tween then
-            self.tween:stop()
-        end
-        if optmgr.useroom == 1 then
-            self.tween = _tween.to(self, 0.6, {ofy = -145})
-        else
-            self.tween = _tween.to(self, 0.7, {ofy = 150}):ease('quadin')
-        end
-        self.selfroom = optmgr.useroom
-    end
-end
+new_opt_bottom(1, 2, 'Extra', -145, 150, 0.6, 0.7)
 _tween.to(_last, 0.6, {ofy = -145})
 
-opt[1][3] = _newex(_class_text, 'Config')
-_last:set_align('lb')
-_last.ofy = 150
-_last.font = _font.title
-_last.is_fmt = true
-_last.txtagn = 'center'
-_last.selfroom = optmgr.useroom
-_last.tween = nil
-_last.update = function (self)
-    _class_text.update(self)
-    if optmgr.useroom == 1 then
-        if optmgr.useropt ~= 3 then
-            self.ca = 0.5
-        else
-            self.ca = 1
-        end
-    end
-    if self.selfroom ~= optmgr.useroom then
-        if self.tween then
-            self.tween:stop()
-        end
-        if optmgr.useroom == 1 then
-            self.tween = _tween.to(self, 0.7, {ofy = -110})
-        else
-            self.tween = _tween.to(self, 0.6, {ofy = 150}):ease('quadin')
-        end
-        self.selfroom = optmgr.useroom
-    end
-end
+new_opt_bottom(1, 3, 'Config', -110, 150, 0.7, 0.6)
 _tween.to(_last, 0.7, {ofy = -110})
 
-opt[1][4] = _newex(_class_text, 'Quit')
-_last:set_align('lb')
-_last.ofy = 150
-_last.font = _font.title
-_last.is_fmt = true
-_last.txtagn = 'center'
-_last.selfroom = optmgr.useroom
-_last.tween = nil
-_last.update = function (self)
-    _class_text.update(self)
-    if optmgr.useroom == 1 then
-        if optmgr.useropt ~= 4 then
-            self.ca = 0.5
-        else
-            self.ca = 1
-        end
-    end
-    if self.selfroom ~= optmgr.useroom then
-        if self.tween then
-            self.tween:stop()
-        end
-        if optmgr.useroom == 1 then
-            self.tween = _tween.to(self, 0.8, {ofy = -75})
-        else
-            self.tween = _tween.to(self, 0.5, {ofy = 150}):ease('quadin')
-        end
-        self.selfroom = optmgr.useroom
-    end
-end
+new_opt_bottom(1, 4, 'Quit', -75, 150, 0.8, 0.5)
 _tween.to(_last, 0.8, {ofy = -75}):oncomplete(function ()
     focus1.y = opty1[optmgr.useropt] + 3
     focus1.resulty = opty1[optmgr.useropt] + 3
@@ -369,28 +341,7 @@ local opty2 = {
     [3] = _scn.origin_height()/2 + 35
 }
 
-room2t = _newex(_class_text, 'Difficulty Select')
-_last:set_align('lt')
-_last.ofy = -150
-_last.font = _font.title
-_last.is_fmt = true
-_last.txtagn = 'center'
-_last.selfroom = optmgr.useroom
-_last.tween = nil
-_last.update = function (self)
-    _class_text.update(self)
-    if self.selfroom ~= optmgr.useroom then
-        if self.tween then
-            self.tween:stop()
-        end
-        if optmgr.useroom == 2 then
-            _tween.to(self, 0.6, {ofy = 40})
-        else
-            _tween.to(self, 0.6, {ofy = -150}):ease('quadin')
-        end
-        self.selfroom = optmgr.useroom
-    end
-end
+room2t = new_title(2, 'Difficulty Select')
 
 focus2 = _newex(_class_sprite)
 focus2.selfroom = optmgr.useroom

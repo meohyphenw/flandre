@@ -62,32 +62,50 @@ function bullet:before()
     fog.y = self.y
     fog.ox = 16
     fog.oy = 16
-    fog.sx = 1.8
-    fog.sy = 1.8
-    _tween.to(fog, 0.4, {sx = 0.8, sy = 0.8, ca = 0}):ease('linear'):oncomplete(function ()
+    fog.sx = 1.5
+    fog.sy = 1.5
+    fog.update = function (self2)
+        _class_sprite.update(self2)
+        self2.x = self.x
+        self2.y = self.y
+    end
+    _tween.to(fog, 0.25, {sx = 0.8, sy = 0.8}):ease('linear'):oncomplete(function ()
         _rmv(fog)
     end)
-    --_tween.to(fog, 0.2, {ca = 0}):delay(0.2):ease('linear')
+    _tween.to(fog, 0.2, {ca = 0}):ease('linear')
 end
 
 function bullet:after()
-    local fog = _newex(_class_sprite, _image.etbreak)
+    local fog = _newex(_class_sprite, _image.bullet_map1)
     fog.layer = LAYER_ENEMY_BULLET + 1
-    fog.quad = _quad_group.etbreak
-    fog.cr = self.fog_color_number[1]
-    fog.cg = self.fog_color_number[2]
-    fog.cb = self.fog_color_number[3]
-    fog.ca = 0.3
+    fog.quad = _quad_group.bullet_map1
+    fog.frame = 'fog_' .. self.fog_color
     fog.x = self.x
     fog.y = self.y
-    fog.ox = 32
-    fog.oy = 32
-    _task.new(fog, function ()
+    fog.ox = 16
+    fog.oy = 16
+    fog.sx = 1
+    fog.sy = 1
+    _tween.to(fog, 0.3, {sx = 0, sy = 0, ca = 0.6}):ease('linear'):oncomplete(function ()
+        _rmv(fog)
+    end)
+    local fog2 = _newex(_class_sprite, _image.etbreak)
+    fog2.layer = LAYER_ENEMY_BULLET + 1
+    fog2.quad = _quad_group.etbreak
+    fog2.cr = self.fog_color_number[1]
+    fog2.cg = self.fog_color_number[2]
+    fog2.cb = self.fog_color_number[3]
+    fog2.ca = 0.3
+    fog2.x = self.x
+    fog2.y = self.y
+    fog2.ox = 32
+    fog2.oy = 32
+    _task.new(fog2, function (self2)
         for i = 1, 8 do
-            fog.frame = i
+            self2.frame = i
             _task.wait(2)
         end
-        _rmv(fog)
+        _rmv(self2)
     end)
 end
 
