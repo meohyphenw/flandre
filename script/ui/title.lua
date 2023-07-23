@@ -464,6 +464,8 @@ focus3.draw = function (self)
     love.graphics.rectangle("fill", self.x, self.y, _scn.origin_width(), 32)
 end
 
+--这个页面的选项有些特殊所以就不用new_option_center了
+
 option[3][1] = _newex(_class_text, 'BGM Volume:    ' .. tostring(bgmv*10) .. '%')
 _last:set_align('l')
 _last.ofx = -680
