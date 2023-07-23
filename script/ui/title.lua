@@ -5,19 +5,19 @@ _new(_class_drawable_ui, _image.titlebg)
 local bgmv = 10
 local sev = 10
 local is_fullscreen = false
-local opt = {}
-local tempopt = {
+local option = {}
+local tempoption = {
     [1] = 1,
     [2] = 1,
     [3] = 1
 }
 
-local optmgr = _newex(_class_object)
-optmgr.useroom = 1
-optmgr.useropt = 1
+local optionmgr = _newex(_class_object)
+optionmgr.useroom = 1
+optionmgr.useroption = 1
 
 local function leave(f)
-    optmgr.useroom = 0
+    optionmgr.useroom = 0
     local mask = _newex(_class_sprite)
     _last.ca = 0
     _last.layer = LAYER_UI + 1
@@ -32,76 +32,76 @@ local function leave(f)
     end)
 end
 
-_task.new(optmgr, function (self)
+_task.new(optionmgr, function (self)
     --_music.bg:play()
     --开头停一会防止第一次启动动画出bug
     _task.wait(61)
     while true do
         if is_down('up') then
             if self.useroom == 1 then
-                if self.useropt == 3 and not _user.clear then
-                    self.useropt = 1
-                elseif self.useropt ~= 1 then
-                    self.useropt = self.useropt - 1
+                if self.useroption == 3 and not _user.clear then
+                    self.useroption = 1
+                elseif self.useroption ~= 1 then
+                    self.useroption = self.useroption - 1
                 else
-                    self.useropt = 4
+                    self.useroption = 4
                 end
             elseif self.useroom == 2 then
-                if self.useropt ~= 1 then
-                    self.useropt = self.useropt - 1
+                if self.useroption ~= 1 then
+                    self.useroption = self.useroption - 1
                 else
-                    self.useropt = 3
+                    self.useroption = 3
                 end
             elseif self.useroom == 3 then
-                if self.useropt ~= 1 then
-                    self.useropt = self.useropt - 1
+                if self.useroption ~= 1 then
+                    self.useroption = self.useroption - 1
                 else
-                    self.useropt = 3
+                    self.useroption = 3
                 end
             end
             _sound.select:play()
             _task.wait(8)
         elseif is_down('down') then
             if self.useroom == 1 then
-                if self.useropt == 1 and not _user.clear then
-                    self.useropt = 3
-                elseif self.useropt ~= 4 then
-                    self.useropt = self.useropt + 1
+                if self.useroption == 1 and not _user.clear then
+                    self.useroption = 3
+                elseif self.useroption ~= 4 then
+                    self.useroption = self.useroption + 1
                 else
-                    self.useropt = 1
+                    self.useroption = 1
                 end
             elseif self.useroom == 2 then
-                if self.useropt ~= 3 then
-                    self.useropt = self.useropt + 1
+                if self.useroption ~= 3 then
+                    self.useroption = self.useroption + 1
                 else
-                    self.useropt = 1
+                    self.useroption = 1
                 end
             elseif self.useroom == 3 then
-                if self.useropt ~= 3 then
-                    self.useropt = self.useropt + 1
+                if self.useroption ~= 3 then
+                    self.useroption = self.useroption + 1
                 else
-                    self.useropt = 1
+                    self.useroption = 1
                 end
             end
             _sound.select:play()
             _task.wait(8)
         elseif is_down('left') then
             if self.useroom == 3 then
-                if self.useropt == 1 then
+                if self.useroption == 1 then
                     if bgmv ~= 0 then
                         bgmv = bgmv - 1
                     else
                         bgmv = 10
                     end
                     _core.set_music_volume(bgmv/10)
-                elseif self.useropt == 2 then
+                elseif self.useroption == 2 then
                     if sev ~= 0 then
                         sev = sev - 1
                     else
                         sev = 10
                     end
                     _core.set_sound_volume(sev/10)
-                elseif self.useropt == 3 then
+                elseif self.useroption == 3 then
                     if is_fullscreen == true then
                         is_fullscreen = false
                         love.window.setFullscreen(false)
@@ -116,21 +116,21 @@ _task.new(optmgr, function (self)
             _task.wait(8)
         elseif is_down('right') then
             if self.useroom == 3 then
-                if self.useropt == 1 then
+                if self.useroption == 1 then
                     if bgmv ~= 10 then
                         bgmv = bgmv + 1
                     else
                         bgmv = 0
                     end
                     _core.set_music_volume(bgmv/10)
-                elseif self.useropt == 2 then
+                elseif self.useroption == 2 then
                     if sev ~= 10 then
                         sev = sev + 1
                     else
                         sev = 0
                     end
                     _core.set_sound_volume(sev/10)
-                elseif self.useropt == 3 then
+                elseif self.useroption == 3 then
                     if is_fullscreen == true then
                         is_fullscreen = false
                         love.window.setFullscreen(false)
@@ -145,27 +145,27 @@ _task.new(optmgr, function (self)
             _task.wait(8)
         elseif is_down('z') then
             if self.useroom == 1 then
-                if self.useropt == 1 then
-                    tempopt[1] = self.useropt
-                    self.useropt = tempopt[2]
+                if self.useroption == 1 then
+                    tempoption[1] = self.useroption
+                    self.useroption = tempoption[2]
                     self.useroom = 2
                     _sound.ok:play()
-                elseif self.useropt == 2 then
-                    tempopt[1] = self.useropt
+                elseif self.useroption == 2 then
+                    tempoption[1] = self.useroption
                     _sound.ok:play()
-                elseif self.useropt == 3 then
+                elseif self.useroption == 3 then
                     self.useroom = 3
-                    tempopt[1] = self.useropt
-                    self.useropt = tempopt[3]
+                    tempoption[1] = self.useroption
+                    self.useroption = tempoption[3]
                     _sound.ok:play()
-                elseif self.useropt == 4 then
+                elseif self.useroption == 4 then
                     leave()
                     _sound.ok:play()
                     _task.wait(60) -- 就是为了这碗醋才包的饺子（指每一个if下都放一个音效播放）
                     love.event.quit()
                 end
             elseif self.useroom == 2 then
-                _user.stage = self.useropt
+                _user.stage = self.useroption
                 _sound.ok:play()
                 leave(function ()
                     _do_script('script.ui.world')
@@ -174,23 +174,23 @@ _task.new(optmgr, function (self)
             _task.wait(8)
         elseif is_down('x') then
             if self.useroom == 1 then
-                if self.useropt == 4 then
+                if self.useroption == 4 then
                     leave()
                     _sound.ok:play()
                     _task.wait(60)
                     love.event.quit()
                 else
-                    self.useropt = 4
+                    self.useroption = 4
                     _sound.cancel:play()
                 end
             elseif self.useroom == 2 then
-                tempopt[2] = self.useropt
-                self.useropt = tempopt[1]
+                tempoption[2] = self.useroption
+                self.useroption = tempoption[1]
                 self.useroom = 1
                 _sound.cancel:play()
             elseif self.useroom == 3 then
-                tempopt[3] = self.useropt
-                self.useropt = tempopt[1]
+                tempoption[3] = self.useroption
+                self.useroption = tempoption[1]
                 self.useroom = 1
                 _sound.cancel:play()
             end
@@ -200,9 +200,9 @@ _task.new(optmgr, function (self)
     end
 end)
 
-opt[1] = {}
+option[1] = {}
 
-local opty1 = {
+local optiony1 = {
     [1] = _scn.origin_height() -180,
     [2] = _scn.origin_height() -145,
     [3] = _scn.origin_height() -110,
@@ -210,33 +210,33 @@ local opty1 = {
 }
 
 local focus1 = _newex(_class_sprite)
-focus1.selfroom = optmgr.useroom
-focus1.selfopt = optmgr.useropt
+focus1.selfroom = optionmgr.useroom
+focus1.selfoption = optionmgr.useroption
 focus1.layer = LAYER_UI + 1
 focus1.tween = nil
 focus1.ca = 0
 focus1.update = function (self)
-    if optmgr.useroom == 1 then
-        self.resulty = opty1[optmgr.useropt] + 3
-        if self.selfopt ~= optmgr.useropt then
+    if optionmgr.useroom == 1 then
+        self.resulty = optiony1[optionmgr.useroption] + 3
+        if self.selfoption ~= optionmgr.useroption then
             if self.tween then
                 self.tween:stop()
             end
             self.tween = _tween.to(self, 0.25, {y = self.resulty})
-            self.selfopt = optmgr.useropt
+            self.selfoption = optionmgr.useroption
         end
     end
-    if self.selfroom ~= optmgr.useroom then
+    if self.selfroom ~= optionmgr.useroom then
         if self.tween then
             self.tween:stop()
         end
-        if optmgr.useroom == 1 then
+        if optionmgr.useroom == 1 then
             self.y = self.resulty
             self.tween = _tween.to(self, 0.35, {ca = 0.3})
         else
             self.tween = _tween.to(self, 0.35, {ca = 0})
         end
-        self.selfroom = optmgr.useroom
+        self.selfroom = optionmgr.useroom
     end
 end
 focus1.draw = function (self)
@@ -247,40 +247,40 @@ end
 ---local function define start
 
 ---@param room integer
----@param optn integer
+---@param optionn integer
 ---@param name string
 ---@param pos number
 ---@param pos_hide number
 ---@param speed_in number
 ---@param speed_out number
-local function new_opt_bottom(room, optn, name, pos, pos_hide, speed_in, speed_out)
-    opt[room][optn] = _newex(_class_text, name)
+local function new_option_bottom(room, optionn, name, pos, pos_hide, speed_in, speed_out)
+    option[room][optionn] = _newex(_class_text, name)
     _last:set_align('lb')
     _last.ofy = pos_hide
     _last.font = _font.title
     _last.is_fmt = true
     _last.txtagn = 'center'
-    _last.selfroom = optmgr.useroom
+    _last.selfroom = optionmgr.useroom
     _last.tween = nil
     _last.update = function (self)
         _class_text.update(self)
-        if optmgr.useroom == room then
-            if optmgr.useropt ~= optn then
+        if optionmgr.useroom == room then
+            if optionmgr.useroption ~= optionn then
                 self.ca = 0.5
             else
                 self.ca = 1
             end
         end
-        if self.selfroom ~= optmgr.useroom then
+        if self.selfroom ~= optionmgr.useroom then
             if self.tween then
                 self.tween:stop()
             end
-            if optmgr.useroom == room then
+            if optionmgr.useroom == room then
                 self.tween = _tween.to(self, speed_in, {ofy = pos})
             else
                 self.tween = _tween.to(self, speed_out, {ofy = pos_hide}):ease('quadin')
             end
-            self.selfroom = optmgr.useroom
+            self.selfroom = optionmgr.useroom
         end
     end
 end
@@ -292,50 +292,85 @@ local function new_title(room, name)
     _last.font = _font.title
     _last.is_fmt = true
     _last.txtagn = 'center'
-    _last.selfroom = optmgr.useroom
+    _last.selfroom = optionmgr.useroom
     _last.tween = nil
     _last.update = function (self)
         _class_text.update(self)
-        if self.selfroom ~= optmgr.useroom then
+        if self.selfroom ~= optionmgr.useroom then
             if self.tween then
                 self.tween:stop()
             end
-            if optmgr.useroom == room then
+            if optionmgr.useroom == room then
                 _tween.to(self, 0.6, {ofy = 40})
             else
                 _tween.to(self, 0.6, {ofy = -150}):ease('quadin')
             end
-            self.selfroom = optmgr.useroom
+            self.selfroom = optionmgr.useroom
         end
     end
     return title
 end
 
-local function new_opt_center(room, optn, name, pos, pos_hide, speed_in, speed_out)
-    
+---@param room integer
+---@param optionn integer
+---@param name string
+---@param pos number
+---@param speed_in number
+---@param speed_out number
+local function new_option_center(room, optionn, name, pos, speed_in, speed_out)
+    option[room][optionn] = _newex(_class_text, name)
+    _last:set_align('r')
+    _last.ofx = 0
+    _last.ofy = pos
+    _last.font = _font.title
+    _last.is_fmt = true
+    _last.txtagn = 'center'
+    _last.selfroom = optionmgr.useroom
+    _last.tween = nil
+    _last.update = function (self)
+        _class_text.update(self)
+        if optionmgr.useroom == room then
+            if optionmgr.useroption ~= optionn then
+                self.ca = 0.5
+            else
+                self.ca = 1
+            end
+        end
+        if self.selfroom ~= optionmgr.useroom then
+            if self.tween then
+                self.tween:stop()
+            end
+            if optionmgr.useroom == room then
+                _tween.to(self, speed_in, {ofx = -_scn.origin_width()})
+            else
+                _tween.to(self, speed_out, {ofx = 0}):ease('quadin')
+            end
+            self.selfroom = optionmgr.useroom
+        end
+    end
 end
 
 ---local function define end
 
-new_opt_bottom(1, 1, 'Start', -180, 150, 0.5, 0.8)
+new_option_bottom(1, 1, 'Start', -180, 150, 0.5, 0.8)
 _tween.to(_last, 0.5, {ofy = -180})
 
-new_opt_bottom(1, 2, 'Extra', -145, 150, 0.6, 0.7)
+new_option_bottom(1, 2, 'Extra', -145, 150, 0.6, 0.7)
 _tween.to(_last, 0.6, {ofy = -145})
 
-new_opt_bottom(1, 3, 'Config', -110, 150, 0.7, 0.6)
+new_option_bottom(1, 3, 'Config', -110, 150, 0.7, 0.6)
 _tween.to(_last, 0.7, {ofy = -110})
 
-new_opt_bottom(1, 4, 'Quit', -75, 150, 0.8, 0.5)
+new_option_bottom(1, 4, 'Quit', -75, 150, 0.8, 0.5)
 _tween.to(_last, 0.8, {ofy = -75}):oncomplete(function ()
-    focus1.y = opty1[optmgr.useropt] + 3
-    focus1.resulty = opty1[optmgr.useropt] + 3
+    focus1.y = optiony1[optionmgr.useroption] + 3
+    focus1.resulty = optiony1[optionmgr.useroption] + 3
     _tween.to(focus1, 0.35, {ca = 0.3})
 end)
 
-opt[2] = {}
+option[2] = {}
 
-local opty2 = {
+local optiony2 = {
     [1] = _scn.origin_height()/2 -35,
     [2] = _scn.origin_height()/2,
     [3] = _scn.origin_height()/2 + 35
@@ -344,33 +379,33 @@ local opty2 = {
 room2t = new_title(2, 'Difficulty Select')
 
 focus2 = _newex(_class_sprite)
-focus2.selfroom = optmgr.useroom
-focus2.selfopt = optmgr.useropt
+focus2.selfroom = optionmgr.useroom
+focus2.selfoption = optionmgr.useroption
 focus2.layer = LAYER_UI + 1
 focus2.tween = nil
 focus2.ca = 0
 focus2.update = function (self)
-    if optmgr.useroom == 2 then
-        self.resulty = opty2[optmgr.useropt] + 3
-        if self.selfopt ~= optmgr.useropt then
+    if optionmgr.useroom == 2 then
+        self.resulty = optiony2[optionmgr.useroption] + 3
+        if self.selfoption ~= optionmgr.useroption then
             if self.tween then
                 self.tween:stop()
             end
             self.tween = _tween.to(self, 0.25, {y = self.resulty})
-            self.selfopt = optmgr.useropt
+            self.selfoption = optionmgr.useroption
         end
     end
-    if self.selfroom ~= optmgr.useroom then
+    if self.selfroom ~= optionmgr.useroom then
         if self.tween then
             self.tween:stop()
         end
-        if optmgr.useroom == 2 then
+        if optionmgr.useroom == 2 then
             self.y = self.resulty
             self.tween = _tween.to(self, 0.35, {ca = 0.3})
         else
             self.tween = _tween.to(self, 0.35, {ca = 0})
         end
-        self.selfroom = optmgr.useroom
+        self.selfroom = optionmgr.useroom
     end
 end
 focus2.draw = function (self)
@@ -378,158 +413,50 @@ focus2.draw = function (self)
     love.graphics.rectangle("fill", self.x, self.y, _scn.origin_width(), 32)
 end
 
-opt[2][1] = _newex(_class_text, 'Normal')
-_last:set_align('r')
-_last.ofx = 0
-_last.ofy = -35
-_last.font = _font.title
-_last.is_fmt = true
-_last.txtagn = 'center'
-_last.selfroom = optmgr.useroom
-_last.tween = nil
-_last.update = function (self)
-    _class_text.update(self)
-    if optmgr.useroom == 2 then
-        if optmgr.useropt ~= 1 then
-            self.ca = 0.5
-        else
-            self.ca = 1
-        end
-    end
-    if self.selfroom ~= optmgr.useroom then
-        if self.tween then
-            self.tween:stop()
-        end
-        if optmgr.useroom == 2 then
-            _tween.to(self, 0.6, {ofx = -_scn.origin_width()})
-        else
-            _tween.to(self, 0.6, {ofx = 0}):ease('quadin')
-        end
-        self.selfroom = optmgr.useroom
-    end
-end
+new_option_center(2, 1, 'Normal', -35, 0.6, 0.6)
 
-opt[2][2] = _newex(_class_text, 'Lunatic')
-_last:set_align('r')
-_last.ofx = 0
-_last.ofy = 0
-_last.font = _font.title
-_last.is_fmt = true
-_last.txtagn = 'center'
-_last.selfroom = optmgr.useroom
-_last.tween = nil
-_last.update = function (self)
-    _class_text.update(self)
-    if optmgr.useroom == 2 then
-        if optmgr.useropt ~= 2 then
-            self.ca = 0.5
-        else
-            self.ca = 1
-        end
-    end
-    if self.selfroom ~= optmgr.useroom then
-        if self.tween then
-            self.tween:stop()
-        end
-        if optmgr.useroom == 2 then
-            _tween.to(self, 0.65, {ofx = -_scn.origin_width()})
-        else
-            _tween.to(self, 0.65, {ofx = 0}):ease('quadin')
-        end
-        self.selfroom = optmgr.useroom
-    end
-end
+new_option_center(2, 2, 'Lunatic', 0, 0.65, 0.65)
 
-opt[2][3] = _newex(_class_text, 'Spasmodic')
-_last:set_align('r')
-_last.ofx = 0
-_last.ofy = 35
-_last.font = _font.title
-_last.is_fmt = true
-_last.txtagn = 'center'
-_last.selfroom = optmgr.useroom
-_last.tween = nil
-_last.update = function (self)
-    _class_text.update(self)
-    if optmgr.useroom == 2 then
-        if optmgr.useropt ~= 3 then
-            self.ca = 0.5
-        else
-            self.ca = 1
-        end
-    end
-    if self.selfroom ~= optmgr.useroom then
-        if self.tween then
-            self.tween:stop()
-        end
-        if optmgr.useroom == 2 then
-            _tween.to(self, 0.7, {ofx = -_scn.origin_width()})
-        else
-            _tween.to(self, 0.7, {ofx = 0}):ease('quadin')
-        end
-        self.selfroom = optmgr.useroom
-    end
-end
+new_option_center(2, 3, 'Spasmodic', 35, 0.7, 0.7)
 
-opt[3] = {}
+option[3] = {}
 
-local opty3 = {
+local optiony3 = {
     [1] = _scn.origin_height()/2 -35,
     [2] = _scn.origin_height()/2,
     [3] = _scn.origin_height()/2 + 35
 }
 
-room3t = _newex(_class_text, 'Config')
-_last:set_align('lt')
-_last.ofy = -150
-_last.font = _font.title
-_last.is_fmt = true
-_last.txtagn = 'center'
-_last.selfroom = optmgr.useroom
-_last.tween = nil
-_last.update = function (self)
-    _class_text.update(self)
-    if self.selfroom ~= optmgr.useroom then
-        if self.tween then
-            self.tween:stop()
-        end
-        if optmgr.useroom == 3 then
-            _tween.to(self, 0.6, {ofy = 40})
-        else
-            _tween.to(self, 0.6, {ofy = -150}):ease('quadin')
-        end
-        self.selfroom = optmgr.useroom
-    end
-end
+room3t = new_title(3, 'Config')
 
 focus3 = _newex(_class_sprite)
-focus3.selfroom = optmgr.useroom
-focus3.selfopt = optmgr.useropt
+focus3.selfroom = optionmgr.useroom
+focus3.selfoption = optionmgr.useroption
 focus3.layer = LAYER_UI + 1
 focus3.tween = nil
 focus3.ca = 0
 focus3.update = function (self)
-    if optmgr.useroom == 3 then
-        self.resulty = opty3[optmgr.useropt] + 3
-        if self.selfopt ~= optmgr.useropt then
+    if optionmgr.useroom == 3 then
+        self.resulty = optiony3[optionmgr.useroption] + 3
+        if self.selfoption ~= optionmgr.useroption then
             if self.tween then
                 self.tween:stop()
             end
             self.tween = _tween.to(self, 0.25, {y = self.resulty})
-            self.selfopt = optmgr.useropt
+            self.selfoption = optionmgr.useroption
         end
     end
-    if self.selfroom ~= optmgr.useroom then
+    if self.selfroom ~= optionmgr.useroom then
         if self.tween then
             self.tween:stop()
         end
-        if optmgr.useroom == 3 then
+        if optionmgr.useroom == 3 then
             self.y = self.resulty
             self.tween = _tween.to(self, 0.35, {ca = 0.3})
         else
             self.tween = _tween.to(self, 0.35, {ca = 0})
         end
-        self.selfroom = optmgr.useroom
+        self.selfroom = optionmgr.useroom
     end
 end
 focus3.draw = function (self)
@@ -537,20 +464,20 @@ focus3.draw = function (self)
     love.graphics.rectangle("fill", self.x, self.y, _scn.origin_width(), 32)
 end
 
-opt[3][1] = _newex(_class_text, 'BGM Volume:    ' .. tostring(bgmv*10) .. '%')
+option[3][1] = _newex(_class_text, 'BGM Volume:    ' .. tostring(bgmv*10) .. '%')
 _last:set_align('l')
 _last.ofx = -680
 _last.ofy = -35
 _last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'left'
-_last.selfroom = optmgr.useroom
+_last.selfroom = optionmgr.useroom
 _last.selfv = bgmv
 _last.tween = nil
 _last.update = function (self)
     _class_text.update(self)
-    if optmgr.useroom == 3 then
-        if optmgr.useropt ~= 1 then
+    if optionmgr.useroom == 3 then
+        if optionmgr.useroption ~= 1 then
             self.ca = 0.5
         else
             self.ca = 1
@@ -560,33 +487,33 @@ _last.update = function (self)
         self.selfv = bgmv
         self.content = 'BGM Volume:    ' .. tostring(bgmv*10) .. '%'
     end
-    if self.selfroom ~= optmgr.useroom then
+    if self.selfroom ~= optionmgr.useroom then
         if self.tween then
             self.tween:stop()
         end
-        if optmgr.useroom == 3 then
+        if optionmgr.useroom == 3 then
             _tween.to(self, 0.6, {ofx = 380})
         else
             _tween.to(self, 0.6, {ofx = -680}):ease('quadin')
         end
-        self.selfroom = optmgr.useroom
+        self.selfroom = optionmgr.useroom
     end
 end
 
-opt[3][2] = _newex(_class_text, 'SE Volume:         ' .. tostring(sev*10) .. '%')
+option[3][2] = _newex(_class_text, 'SE Volume:         ' .. tostring(sev*10) .. '%')
 _last:set_align('l')
 _last.ofx = -680
 _last.ofy = 0
 _last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'left'
-_last.selfroom = optmgr.useroom
+_last.selfroom = optionmgr.useroom
 _last.selfv = sev
 _last.tween = nil
 _last.update = function (self)
     _class_text.update(self)
-    if optmgr.useroom == 3 then
-        if optmgr.useropt ~= 2 then
+    if optionmgr.useroom == 3 then
+        if optionmgr.useroption ~= 2 then
             self.ca = 0.5
         else
             self.ca = 1
@@ -596,33 +523,33 @@ _last.update = function (self)
         self.selfv = sev
         self.content = 'SE Volume:         ' .. tostring(sev*10) .. '%'
     end
-    if self.selfroom ~= optmgr.useroom then
+    if self.selfroom ~= optionmgr.useroom then
         if self.tween then
             self.tween:stop()
         end
-        if optmgr.useroom == 3 then
+        if optionmgr.useroom == 3 then
             _tween.to(self, 0.7, {ofx = 380})
         else
             _tween.to(self, 0.7, {ofx = -680}):ease('quadin')
         end
-        self.selfroom = optmgr.useroom
+        self.selfroom = optionmgr.useroom
     end
 end
 
-opt[3][3] = _newex(_class_text, 'Full Screen:         ' .. tostring(is_fullscreen))
+option[3][3] = _newex(_class_text, 'Full Screen:         ' .. tostring(is_fullscreen))
 _last:set_align('l')
 _last.ofx = -680
 _last.ofy = 35
 _last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'left'
-_last.selfroom = optmgr.useroom
+_last.selfroom = optionmgr.useroom
 _last.selfbool = is_fullscreen
 _last.tween = nil
 _last.update = function (self)
     _class_text.update(self)
-    if optmgr.useroom == 3 then
-        if optmgr.useropt ~= 3 then
+    if optionmgr.useroom == 3 then
+        if optionmgr.useroption ~= 3 then
             self.ca = 0.5
         else
             self.ca = 1
@@ -632,15 +559,15 @@ _last.update = function (self)
         self.selfbool = is_fullscreen
         self.content = 'Full Screen:         ' .. tostring(is_fullscreen)
     end
-    if self.selfroom ~= optmgr.useroom then
+    if self.selfroom ~= optionmgr.useroom then
         if self.tween then
             self.tween:stop()
         end
-        if optmgr.useroom == 3 then
+        if optionmgr.useroom == 3 then
             _tween.to(self, 0.8, {ofx = 380})
         else
             _tween.to(self, 0.8, {ofx = -680}):ease('quadin')
         end
-        self.selfroom = optmgr.useroom
+        self.selfroom = optionmgr.useroom
     end
 end
