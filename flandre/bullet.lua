@@ -16,7 +16,7 @@ local COLOR_YELLOW = {247/255, 247/255, 72/255}
 ---@param c flandre.bullet.color
 function bullet:initialize(t, c, x, y, r)
     _class_sprite.initialize(self, _image.bullet_map1)
-    _class_movable.initialize(self)
+    _class_movable.extends(self)
     self.layer = LAYER_ENEMY_BULLET
     self.x = x or 0
     self.y = y or 0

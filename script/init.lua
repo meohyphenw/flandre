@@ -1,4 +1,4 @@
-local debug_script = 'script.ui.title'
+local debug_script = 'script.ui.world'
 local skip = true
 
 local launch = _newex(_class_object)

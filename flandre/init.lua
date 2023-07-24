@@ -119,5 +119,8 @@ _class_player = flandre.player
 flandre.bullet = require('flandre.bullet')
 _class_bullet = flandre.bullet
 
+flandre.dialog = require('flandre.dialog')
+_class_dialog = flandre.dialog
+
 flandre.flanstart()
 return flandre
