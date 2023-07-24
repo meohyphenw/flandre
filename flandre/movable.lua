@@ -1,8 +1,8 @@
+---注意：movable仅用于继承，不可直接实例化该类
 ---@class flandre.movable : flandre.object
 local movable = _class('movable', _class_object)
 
 function movable:initialize()
-    _class_object.initialize(self)
     self.vx = 0
     self.vy = 0
     self.is_rtov = false
