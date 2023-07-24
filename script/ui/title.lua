@@ -1,4 +1,5 @@
 local is_down = love.keyboard.isDown
+local sound_play = love.audio.play
 
 _new(_class_drawable_ui, _image.titlebg)
 
@@ -59,7 +60,7 @@ _task.new(optionmgr, function (self)
                     self.useroption = 3
                 end
             end
-            _sound.select:play()
+            sound_play(_sound.select)
             _task.wait(8)
         elseif is_down('down') then
             if self.useroom == 1 then
@@ -83,7 +84,7 @@ _task.new(optionmgr, function (self)
                     self.useroption = 1
                 end
             end
-            _sound.select:play()
+            sound_play(_sound.select)
             _task.wait(8)
         elseif is_down('left') then
             if self.useroom == 3 then
@@ -112,7 +113,7 @@ _task.new(optionmgr, function (self)
                     _scn.update('auto')
                 end
             end
-            _sound.select:play()
+            sound_play(_sound.select)
             _task.wait(8)
         elseif is_down('right') then
             if self.useroom == 3 then
@@ -141,7 +142,7 @@ _task.new(optionmgr, function (self)
                     _scn.update('auto')
                 end
             end
-            _sound.select:play()
+            sound_play(_sound.select)
             _task.wait(8)
         elseif is_down('z') then
             if self.useroom == 1 then
@@ -149,52 +150,52 @@ _task.new(optionmgr, function (self)
                     tempoption[1] = self.useroption
                     self.useroption = tempoption[2]
                     self.useroom = 2
-                    _sound.ok:play()
+                    sound_play(_sound.ok)
                 elseif self.useroption == 2 then
                     tempoption[1] = self.useroption
-                    _sound.ok:play()
+                    sound_play(_sound.ok)
                 elseif self.useroption == 3 then
                     self.useroom = 3
                     tempoption[1] = self.useroption
                     self.useroption = tempoption[3]
-                    _sound.ok:play()
+                    sound_play(_sound.ok)
                 elseif self.useroption == 4 then
                     leave()
-                    _sound.ok:play()
+                    sound_play(_sound.ok)
                     _task.wait(60) -- 就是为了这碗醋才包的饺子（指每一个if下都放一个音效播放）
                     love.event.quit()
                 end
             elseif self.useroom == 2 then
                 _user.stage = self.useroption
-                _sound.ok:play()
+                sound_play(_sound.ok)
                 leave(function ()
                     _do_script('script.ui.world')
                 end)
             end
-            _task.wait(8)
+            _task.wait(30)
         elseif is_down('x') then
             if self.useroom == 1 then
                 if self.useroption == 4 then
                     leave()
-                    _sound.ok:play()
+                    sound_play(_sound.ok)
                     _task.wait(60)
                     love.event.quit()
                 else
                     self.useroption = 4
-                    _sound.cancel:play()
+                    sound_play(_sound.cancel)
                 end
             elseif self.useroom == 2 then
                 tempoption[2] = self.useroption
                 self.useroption = tempoption[1]
                 self.useroom = 1
-                _sound.cancel:play()
+                sound_play(_sound.cancel)
             elseif self.useroom == 3 then
                 tempoption[3] = self.useroption
                 self.useroption = tempoption[1]
                 self.useroom = 1
-                _sound.cancel:play()
+                sound_play(_sound.cancel)
             end
-            _task.wait(8)
+            _task.wait(30)
         end
         coroutine.yield()
     end

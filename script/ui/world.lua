@@ -38,8 +38,7 @@ _task.new(obj2, function ()
             _task.wait(160)
             _rmv(self)
         end)
-        _task.wait(1)
-        print(#_core.nilindex)
+        _task.wait(6)
     end
 end)
 
