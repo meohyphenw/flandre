@@ -49,9 +49,6 @@ function _do_script(n)
     return f()
 end
 
---覆盖 `require` 函数
-require = _do_script
-
 flandre.flanstart = function() print(flandre._VERSION) end
 
 flandre.tween = require('flandre.flux')
