@@ -2,6 +2,9 @@ local is_down = love.keyboard.isDown
 local sound_play = love.audio.play
 
 _new(_class_drawable_ui, _image.titlebg)
+local panel = _newex(_class_drawable_ui, _image.titlepanel)
+panel.ca = 0
+_tween.to(panel, 1, {ca = 1})
 
 local bgmv = 10
 local sev = 10
