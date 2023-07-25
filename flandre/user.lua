@@ -8,7 +8,7 @@ user.name = 'unknown' ---@type string
 user.level = 0 ---@type integer
 
 --游戏是否通关
-user.is_clear = false ---@type boolean
+user.is_clear = true ---@type boolean
 
 --历史
 user.history = {

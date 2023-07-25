@@ -1,5 +1,5 @@
 local debug_script = nil--'script.ui.world'
-local skip = true
+local skip = false
 
 local launch = _newex(_class_object)
 _task.new(launch, function ()
