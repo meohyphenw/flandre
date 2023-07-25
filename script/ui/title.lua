@@ -57,7 +57,7 @@ end
 _task.new(optionmgr, function (self)
     --_music.bg:play()
     --开头停一会防止第一次启动动画出bug
-    _task.wait(61)
+    _task.wait(160)
     while true do
         if is_down('up') then
             if self.useroom == 1 then
@@ -267,12 +267,13 @@ end
 
 ---@param room integer
 ---@param text string
+---@param pos number?
 ---@return table
-local function new_title(room, text)
+local function new_title(room, text, pos)
     local title = _newex(_class_text, text)
     _last:set_align('rt')
     _last.ofy = -150
-    _last.ofx = -250
+    _last.ofx = pos or -250
     _last.font = _font.title
     _last.selfroom = optionmgr.useroom
     _last.tween = nil
@@ -496,14 +497,15 @@ new_option_right(2, 3, 'Spasmodic', 35, 0.5, 0.5)
 option[3] = {}
 
 local optiony3 = {
-    [1] = _scn.origin_height()/2 -35,
-    [2] = _scn.origin_height()/2,
-    [3] = _scn.origin_height()/2 + 35
+    [1] = _scn.origin_height()/2 -35 -2,
+    [2] = _scn.origin_height()/2 -2,
+    [3] = _scn.origin_height()/2 + 35 -2
 }
 
-room3t = new_title(3, 'Config')
+room3t = new_title(3, 'Config', -210)
 
 focus3 = _newex(_class_sprite)
+focus3.x = _scn.origin_width() -310
 focus3.selfroom = optionmgr.useroom
 focus3.selfoption = optionmgr.useroption
 focus3.layer = LAYER_UI + 1
@@ -535,19 +537,21 @@ focus3.update = function (self)
 end
 focus3.draw = function (self)
     love.graphics.setColor(1,1,1,self.ca)
-    love.graphics.rectangle("fill", self.x, self.y, _scn.origin_width(), 32)
+    love.graphics.rectangle("fill", self.x, self.y, 320, 32)
 end
 
---这个页面的选项有些特殊所以就不用new_option_center了
+--这个页面的选项有些特殊所以就不用new_option了
 
 option[3][1] = _newex(_class_text, 'BGM Volume:    ' .. tostring(bgmv*10) .. '%')
-_last:set_align('l')
-_last.ofx = -680
+_last:set_align('r')
+_last.ofx = 0
 _last.ofy = -35
 _last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'left'
+_last.lmt = _scn.origin_width()/4
 _last.selfroom = optionmgr.useroom
+_last.option_ca = 0
 _last.selfv = bgmv
 _last.tween = nil
 _last.update = function (self)
@@ -555,8 +559,10 @@ _last.update = function (self)
     if optionmgr.useroom == 3 then
         if optionmgr.useroption ~= 1 then
             self.ca = 0.5
+            self.option_ca = 0.5
         else
             self.ca = 1
+            self.option_ca = 1
         end
     end
     if self.selfv ~= bgmv then
@@ -568,21 +574,24 @@ _last.update = function (self)
             self.tween:stop()
         end
         if optionmgr.useroom == 3 then
-            _tween.to(self, 0.6, {ofx = 380})
+            self.ca = self.option_ca
+            _tween.to(self, 0.4, {ofx = -300})
         else
-            _tween.to(self, 0.6, {ofx = -680}):ease('quadin')
+            _tween.to(self, 0.4, {ofx = 0, ca = 0}):ease('quadin')
         end
         self.selfroom = optionmgr.useroom
     end
 end
 
 option[3][2] = _newex(_class_text, 'SE Volume:         ' .. tostring(sev*10) .. '%')
-_last:set_align('l')
-_last.ofx = -680
+_last:set_align('r')
+_last.ofx = 0
 _last.ofy = 0
 _last.font = _font.title
 _last.is_fmt = true
 _last.txtagn = 'left'
+_last.lmt = _scn.origin_width()/4
+_last.option_ca = 0
 _last.selfroom = optionmgr.useroom
 _last.selfv = sev
 _last.tween = nil
@@ -591,8 +600,10 @@ _last.update = function (self)
     if optionmgr.useroom == 3 then
         if optionmgr.useroption ~= 2 then
             self.ca = 0.5
+            self.option_ca = 0.5
         else
             self.ca = 1
+            self.option_ca = 1
         end
     end
     if self.selfv ~= sev then
@@ -604,21 +615,24 @@ _last.update = function (self)
             self.tween:stop()
         end
         if optionmgr.useroom == 3 then
-            _tween.to(self, 0.7, {ofx = 380})
+            self.ca = self.option_ca
+            _tween.to(self, 0.45, {ofx = -300})
         else
-            _tween.to(self, 0.7, {ofx = -680}):ease('quadin')
+            _tween.to(self, 0.45, {ofx = 0, ca = 0}):ease('quadin')
         end
         self.selfroom = optionmgr.useroom
     end
 end
 
 option[3][3] = _newex(_class_text, 'Full Screen:         ' .. tostring(is_fullscreen))
-_last:set_align('l')
-_last.ofx = -680
+_last:set_align('r')
+_last.ofx = 0
 _last.ofy = 35
 _last.font = _font.title
 _last.is_fmt = true
+_last.lmt = _scn.origin_width()/4
 _last.txtagn = 'left'
+_last.option_ca = 0
 _last.selfroom = optionmgr.useroom
 _last.selfbool = is_fullscreen
 _last.tween = nil
@@ -627,8 +641,10 @@ _last.update = function (self)
     if optionmgr.useroom == 3 then
         if optionmgr.useroption ~= 3 then
             self.ca = 0.5
+            self.option_ca = 0.5
         else
             self.ca = 1
+            self.option_ca = 1
         end
     end
     if self.selfbool ~= is_fullscreen then
@@ -640,9 +656,10 @@ _last.update = function (self)
             self.tween:stop()
         end
         if optionmgr.useroom == 3 then
-            _tween.to(self, 0.8, {ofx = 380})
+            self.ca = self.option_ca
+            _tween.to(self, 0.5, {ofx = -300})
         else
-            _tween.to(self, 0.8, {ofx = -680}):ease('quadin')
+            _tween.to(self, 0.5, {ofx = 0, ca = 0}):ease('quadin')
         end
         self.selfroom = optionmgr.useroom
     end
