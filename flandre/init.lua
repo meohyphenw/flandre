@@ -29,8 +29,12 @@ SOFTWARE.
 ---加载资源，使用 `require` 的路径风格（省略 `init.lua` ，`/` 替换为 `.` ）
 ---加载错误并不会报错或者返回任何值，谨慎使用
 ---@param n string
-function _load_res(n)
-    love.filesystem.load(string.gsub(n, '%.', '/') .. '/init.lua')()
+function _load_resource(n)
+    local f, e = love.filesystem.load(string.gsub(n, '%.', '/') .. '/init.lua')
+    if e then
+        print(e)
+    end
+    f()
 end
 
 ---执行脚本并返回脚本中的返回值，使用 `require` 的路径风格（省略 `.lua` ，`/` 替换为 `.` ）
@@ -38,8 +42,15 @@ end
 ---@param n string
 ---@return unknown
 function _do_script(n)
-    return love.filesystem.load(string.gsub(n, '%.', '/') .. '.lua')()
+    local f, e = love.filesystem.load(string.gsub(n, '%.', '/') .. '.lua')
+    if e then
+        print(e)
+    end
+    return f()
 end
+
+--覆盖 `require` 函数
+require = _do_script
 
 flandre.flanstart = function() print(flandre._VERSION) end
 

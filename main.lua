@@ -1,6 +1,6 @@
 function love.load()
     flandre = require 'flandre'
-    _load_res 'script'
+    _load_resource 'script'
 end
 
 function love.update()

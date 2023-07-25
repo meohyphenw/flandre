@@ -2,7 +2,7 @@
     "Lua.runtime.version": "LuaJIT",
     "Lua.runtime.special": {
         "love.filesystem.load": "loadfile",
-        "_load_res": "require",
+        "_load_resource": "require",
         "_do_script": "require"
     },
     "Lua.workspace.library": [

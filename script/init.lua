@@ -17,15 +17,15 @@ _task.new(launch, function ()
         _tween.to(tip, 1.5, {ca = 1})
         _task.wait(120)
     end
-    _load_res 'res.ui'
-    _load_res 'res.font'
-    _load_res 'res.background'
-    _load_res 'res.se'
-    _load_res 'res.music'
-    _load_res 'res.bullet'
-    _load_res 'res.player'
-    _load_res 'res.enemy'
-    _load_res 'res.item'
+    _load_resource 'res.ui'
+    _load_resource 'res.font'
+    _load_resource 'res.background'
+    _load_resource 'res.se'
+    _load_resource 'res.music'
+    _load_resource 'res.bullet'
+    _load_resource 'res.player'
+    _load_resource 'res.enemy'
+    _load_resource 'res.item'
     if not skip then
         _task.wait(120)
         _tween.to(tip, 1.5, {ca = 0})
