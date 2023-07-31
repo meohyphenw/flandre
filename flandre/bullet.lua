@@ -1,5 +1,5 @@
----@class flandre.bullet : flandre.sprite, flandre.movable
-local bullet = _class('bullet', _class_sprite, _class_movable)
+---@class flandre.bullet : flandre.sprite
+local bullet = _class('bullet', _class_sprite)
 
 ---@alias flandre.bullet.type 'scale'|'ring'|'circle'|'rice'|'sharp'|'prism'|'square'|'ammo'|'long_bacteria'|'star'|'ghost'|'bacteria'
 ---@alias flandre.bullet.color 'black'|'deep_red'|'red'|'purple'|'pink'|'deep_blue'|'blue'|'deep_cyan'|'cyan'|'deep_green'|'green'|'greenish_yellow'|'deep_yellow'|'yellow'|'golden'|'white'
@@ -16,7 +16,6 @@ local COLOR_YELLOW = {247/255, 247/255, 72/255}
 ---@param c flandre.bullet.color
 function bullet:initialize(t, c, x, y, r)
     _class_sprite.initialize(self, _image.bullet_map1)
-    _class_movable.extends(self)
     self.layer = LAYER_ENEMY_BULLET
     self.x = x or 0
     self.y = y or 0
@@ -110,7 +109,7 @@ function bullet:after()
 end
 
 function bullet:update()
-    _class_movable.update(self)
+    _class_sprite.update(self)
 end
 
 return bullet

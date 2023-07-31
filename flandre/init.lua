@@ -100,9 +100,6 @@ _replay = flandre.replay
 flandre.object = require('flandre.object')
 _class_object = flandre.object
 
-flandre.movable = require('flandre.movable')
-_class_movable = flandre.movable
-
 flandre.drawable = require('flandre.drawable')
 _class_drawable = flandre.drawable
 

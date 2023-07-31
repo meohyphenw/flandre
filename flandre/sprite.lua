@@ -25,10 +25,21 @@ function sprite:initialize(i)
     self.oy = 0 ---@type number origin y
     self.kx = 0 ---@type number
     self.ky = 0 ---@type number
+
+    self.vx = 0
+    self.vy = 0
+    self.is_rtov = false
+    self.v = 0
 end
 
 function sprite:update()
     _task.continue(self)
+    self.x = self.x + self.vx
+    self.y = self.y + self.vy
+    if self.is_rtov then
+        self.vx = math.cos(self.r) * self.v
+        self.vy = math.sin(self.r) * self.v
+    end
 end
 
 function sprite:draw()
