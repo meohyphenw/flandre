@@ -2,3 +2,13 @@
 --_new(_class_drawable_ui, _image.titlebg)
 --local o = _newex(_do_script('res.player.paradox_state'), {x = 100, y = 100})
 --o:set_content(100)
+_load_image('script/other/www.png', 'www')
+_load_image('script/other/123.png', 'face')
+local anim = require('script.other.panel')
+--[[ local obj = _newex(require('script.other.panel'), _image.www)
+local obj2 = _newex(_class_object)
+_task.new(obj2, function ()
+    _task.wait(10)
+    obj:appear()
+end) ]]
+anim.spellcard_anim(_image.www, _image.face)
